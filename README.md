@@ -27,6 +27,8 @@ Die Gallerie bezeichnet die Bilder die auf der Startseite gezeigt werden. Die gl
 - bild_hoch.jpg
 - bild_portrait.jpg
 
+Die Bilder müssen im Format 16:9 bzw. 4:5 abgespeichert werden. Ich mache das bei mir indem ich ein Bild in MacOS Photos importiere, dann auf "crop" gehe und dann kann man auf der rechten Seite auch ein "custom format" wählen. Danach Bilder exportieren.
+
 Die Namen können alle frei gewählt werden. Die `.yaml` Datei hat folgendes Format:
 
 ```yaml
@@ -48,3 +50,13 @@ Diese Seite ist weder Markdown noch wird sie ausschließlich aus Daten erzeugt. 
 Die `.md` Datei hat eine so genannte "frontmatter" Sektion (Bereich zwischen `---`). `photoAlt` ist wie vorhin ein Bild-Titel. Nach der frontmatter Sektion kann Markdown geschrieben werden (siehe `src/content/therapeuten/1-koennecke.md`). Ist diese nicht leer, so wird auf der "Therapeuten" Seite ein Link angezeigt, zu der Vita.
 
 Der Rest der "Kontakt & Anfahrt" Seite kann einfach in `src/pages/kontakt.astro` mittels HTML angepasst werden.
+
+## Git Workflow
+
+1. Projekt synchronisieren `git checkout main; git pull`
+2. Einen neuen Branch erstellen `git checkout -B meine-aenderung-123`
+3. Lokal Änderungen vornehmen und mit den Kommandos unter "Quickstart" testen
+4. Änderungen hochladen `git add .; git push -u origin meine-aenderung-123`
+5. [Hier](https://github.com/cideM/kjp-astro/pulls) "New pull request" klicken
+6. Den neuen pull request öffnen und warten bis Netlify den Link zur Vorschau geklickt hat
+
