@@ -8,6 +8,8 @@
 
 ## Quickstart
 
+Erstelle eine `.env` Datei in dem Ordner der das Projekt beinhaltet. Den Inhalt dieser Datei kannst du bei mir erfragen.
+
 Diese Befehle müssen auch nach jeder Änderung ausgeführt werden (beim ersten Mal langsam danach schneller).
 
 ```shell
