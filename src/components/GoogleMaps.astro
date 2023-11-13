@@ -15,62 +15,50 @@ const { imageProps, height, src, allowFullScreen } = Astro.props;
 ---
 
 <style>
-  button {
-    outline: 0;
-    border: 0;
+  button.consent > .overlay {
+    display: flex;
+    font-weight: bold;
+    flex-direction: column;
+    gap: 2em;
+    align-items: center;
+    padding: 4em 1em;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    color: white;
+    background-color: rgba(50, 50, 50, 0.7);
   }
 
   button.consent {
+    width: 100%;
     position: relative;
-    & > .overlay {
-      display: flex;
-      font-weight: bold;
-      flex-direction: column;
-      gap: 2em;
-      align-items: center;
-      padding: 4em 1em;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      color: white;
-      background-color: rgba(50, 50, 50, 0.7);
-
-      & p {
-        font-size: inherit;
-      }
-
-      & > * {
-        display: flex;
-        align-items: center;
-      }
-    }
   }
 
-  .container.consent {
-    & > .overlay {
-      display: none;
-    }
+  .container.consent > .overlay {
+    display: none;
   }
 
-  .container:not(.consent) {
-    & > iframe {
-      display: none;
-    }
+  .container:not(.consent) > iframe {
+    display: none;
+  }
+
+  h2 {
+    display: flex;
+    align-items: center;
+  }
+
+  iframe {
+    width: 100%;
   }
 
   .container {
     width: 100%;
+  }
 
-    & iframe {
-      width: 100%;
-    }
-
-    & :global(img) {
-      width: 100%;
-    }
+  .container :global(img) {
+    width: 100%;
   }
 </style>
 

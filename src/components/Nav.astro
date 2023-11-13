@@ -13,13 +13,23 @@ const routes = [
 ---
 
 <style>
-  header {
-    & a,
-    a:visited {
-      font-weight: bold;
-      text-decoration: none;
-    }
+  header a,
+  a:visited {
+    font-weight: bold;
+    text-decoration: none;
+  }
 
+  header > div {
+    max-width: var(--main-content-max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.5rem;
+  }
+
+  header {
     position: sticky;
     top: 0;
     background: var(--background-color-primary, white);
@@ -27,16 +37,6 @@ const routes = [
     border-bottom: 1px solid var(--border-color-secondary);
     width: 100%;
     padding: 0 1rem;
-
-    & > div {
-      max-width: var(--main-content-max-width);
-      margin: 0 auto;
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 0.5rem;
-    }
   }
 
   button {
@@ -48,28 +48,39 @@ const routes = [
     font-size: inherit;
   }
 
+  menu {
+    list-style: none;
+  }
+
   @media (min-width: 1001px) {
     button[aria-haspopup="menu"] {
       display: none;
     }
 
-    nav {
-      & menu {
-        display: flex;
-        gap: 2em;
-      }
+    nav menu {
+      display: flex;
+      gap: 2em;
+    }
 
-      & li {
-        list-style-type: none;
-        display: inline-block;
-      }
+    nav li {
+      display: inline-block;
     }
   }
 
   @media (max-width: 1000px) {
+    nav li {
+      width: 100%;
+      padding: 0.5em 0;
+      border-bottom: 1px solid var(--border-color-secondary);
+    }
+
+    nav li:last-child {
+      border-bottom: none;
+    }
+
     nav[aria-expanded="true"] {
-      list-style-type: unset;
       display: unset;
+      width: 100%;
       order: 3;
     }
 

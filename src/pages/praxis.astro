@@ -14,21 +14,22 @@ const formats = ["webp", "jpg"];
     width: 100%;
     margin: 0 auto;
     text-align: center;
-    & section {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      align-items: center;
+  }
 
-      & :global(picture) {
-        width: fit-content;
-      }
+  main section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
 
-      & :global(img) {
-        object-fit: cover;
-      }
-    }
+  main section :global(picture) {
+    width: fit-content;
+  }
+
+  main section :global(img) {
+    object-fit: cover;
   }
 </style>
 

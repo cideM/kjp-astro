@@ -7,12 +7,12 @@ const allTherapeuten = await getCollection("therapeuten");
 ---
 
 <style>
-  :global(img) {
+  main :global(img) {
     object-fit: cover;
     object-position: center;
   }
 
-  :global(picture) {
+  main :global(picture) {
     width: 100%;
   }
 
@@ -21,13 +21,14 @@ const allTherapeuten = await getCollection("therapeuten");
     text-align: center;
     max-width: var(--main-content-max-width);
     width: 100%;
-    & > section {
-      justify-content: center;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 2em;
-    }
+  }
+
+  main > section {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2em;
   }
 
   article {
@@ -39,14 +40,16 @@ const allTherapeuten = await getCollection("therapeuten");
     width: 350px;
     height: fit-content;
     align-items: center;
-    & span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      & :global(svg) {
-        margin-right: 0.5em;
-      }
-    }
+  }
+
+  article span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  article span :global(svg) {
+    margin-right: 0.5em;
   }
 </style>
 
