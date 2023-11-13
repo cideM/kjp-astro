@@ -109,7 +109,7 @@ const therapeutenCollection = await getCollection("therapeuten");
     </div>
     <GoogleMaps
       height={400}
-      src=`https://www.google.com/maps/embed/v1/place?q=kjp%20meerbusch&key=${import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY}`
+      src={`https://www.google.com/maps/embed/v1/place?q=kjp%20meerbusch&key=${import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY}`}
       allowFullScreen
       imageProps={{
         alt: "Google Maps Link zur Praxis",
