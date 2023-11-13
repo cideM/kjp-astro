@@ -116,10 +116,25 @@ const images: {
       })
     }
   </div>
+  <div class="swiper-pagination"></div>
 </div>
 
 <script>
   import Swiper from "swiper";
+  import { Autoplay, Pagination } from "swiper/modules";
   import "swiper/css";
-  new Swiper(".swiper");
+  import "swiper/css/autoplay";
+  import "swiper/css/pagination";
+  new Swiper(".swiper", {
+    modules: [Autoplay, Pagination],
+    autoplay: {
+      delay: 3000,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    speed: 1000,
+    loop: true,
+  });
 </script>
