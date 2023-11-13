@@ -1,0 +1,26 @@
+---
+import { Picture } from "astro:assets";
+const { size, alt, src, ...props } = Astro.props;
+---
+
+<style define:vars={{ size: size }}>
+  div {
+    & :global(picture) {
+      border-radius: 10000px;
+      overflow: hidden;
+      min-width: var(--size);
+      width: var(--size);
+      height: var(--size);
+      min-height: var(--size);
+    }
+
+    & :global(img) {
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+</style>
+
+<div>
+  <Picture src={src} alt={alt} width={size} height={size} {...props} />
+</div>

@@ -1,0 +1,57 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Picture } from "astro:assets";
+import { getCollection } from "astro:content";
+const praxisCollection = await getCollection("praxis");
+
+const thumbnailWidth = 300;
+const formats = ["webp", "jpg"];
+---
+
+<style>
+  main {
+    max-width: var(--main-content-max-width);
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    & section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+
+      & :global(picture) {
+        width: fit-content;
+      }
+
+      & :global(img) {
+        object-fit: cover;
+      }
+    }
+  }
+</style>
+
+<Layout title="KJP Meerbusch">
+  <main>
+    <h1>Praxis</h1>
+    <section>
+      {
+        praxisCollection.map((entry) => (
+          <a href={entry.data.src.src}>
+            <Picture
+              src={entry.data.src}
+              alt={entry.data.alt}
+              widths={[thumbnailWidth]}
+              decoding="async"
+              loading="eager"
+              width={thumbnailWidth}
+              height={thumbnailWidth}
+              formats={formats}
+            />
+          </a>
+        ))
+      }
+    </section>
+  </main>
+</Layout>

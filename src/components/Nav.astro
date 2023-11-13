@@ -1,0 +1,116 @@
+---
+import { Picture } from "astro:assets";
+import Menu from "feather-icons/dist/icons/menu.svg?raw";
+import logo from "../images/logo.jpg";
+
+const routes = [
+  { text: "Behandlungsangebot", href: "/behandlungsangebot" },
+  { text: "Praxis", href: "/praxis" },
+  { text: "Therapeuten", href: "/therapeuten" },
+  { text: "Kosten", href: "/kosten" },
+  { text: "Kontakt & Anfahrt", href: "/kontakt" },
+];
+---
+
+<style>
+  header {
+    & a,
+    a:visited {
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    position: sticky;
+    top: 0;
+    background: var(--background-color-primary, white);
+    z-index: 100;
+    border-bottom: 1px solid var(--border-color-secondary);
+    width: 100%;
+    padding: 0 1rem;
+
+    & > div {
+      max-width: var(--main-content-max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.5rem;
+    }
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    background: none;
+    border: none;
+    font-size: inherit;
+  }
+
+  @media (min-width: 1001px) {
+    button[aria-haspopup="menu"] {
+      display: none;
+    }
+
+    nav {
+      & menu {
+        display: flex;
+        gap: 2em;
+      }
+
+      & li {
+        list-style-type: none;
+        display: inline-block;
+      }
+    }
+  }
+
+  @media (max-width: 1000px) {
+    nav[aria-expanded="true"] {
+      list-style-type: unset;
+      display: unset;
+      order: 3;
+    }
+
+    nav:not([aria-expanded="true"]) {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const openMenuButton = document.querySelector("[aria-haspopup=menu]")!;
+  const nav = document.querySelector("header nav")!;
+  openMenuButton.addEventListener("click", () => {
+    const isOpen = nav.getAttribute("aria-expanded") === "true";
+    if (isOpen) {
+      nav.removeAttribute("aria-expanded");
+      return;
+    }
+    nav.setAttribute("aria-expanded", "true");
+  });
+</script>
+
+<header>
+  <div>
+    <a href="/">
+      <Picture src={logo} height="70" alt="Logo" />
+    </a>
+    <nav id="desktop" aria-label="Menü">
+      <menu>
+        {
+          routes.map(({ text, href }) => (
+            <li>
+              <a href={href}>{text}</a>
+            </li>
+          ))
+        }
+      </menu>
+    </nav>
+
+    <button aria-haspopup="menu" aria-label="Menü öffnen" type="button"
+      ><Fragment set:html={Menu} /> Menü</button
+    >
+  </div>
+</header>

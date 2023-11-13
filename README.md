@@ -1,54 +1,48 @@
-# Astro Starter Kit: Basics
+# KJP Meerbusch
 
-```sh
-npm create astro@latest -- --template basics
+## Voraussetzungen
+
+- [Docker](https://www.docker.com/)
+- [GitHub](https://github.com/) Zugriff
+- Terminal oder [Visual Studio Code (hat Terminal integriert)](https://code.visualstudio.com/)
+
+## Quickstart
+
+Diese Befehle müssen auch nach jeder Änderung ausgeführt werden (beim ersten Mal langsam danach schneller).
+
+```shell
+$ docker build . -t kjp
+$ docker run -p 4444:80 kjp
+$ open http://localhost:4444
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Anleitung
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Bilder für Gallerie und `/praxis` ändern/hinzufügen/löschen
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+Die Gallerie bezeichnet die Bilder die auf der Startseite gezeigt werden. Die gleichen Bilder werden auf der `/praxis` Seite gezeigt. Die Daten für beide Gallerien befinden sich in `src/content/gallerie/`. Für jedes Bild ist es erforderlich 3 Dateien anzulegen:
+- irgendein_name.yaml
+- bild_hoch.jpg
+- bild_portrait.jpg
 
-## 🚀 Project Structure
+Die Namen können alle frei gewählt werden. Die `.yaml` Datei hat folgendes Format:
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+```yaml
+srcLandscape: "./spielecke.jpg"
+srcPortrait: "./spielecke_portrait.jpg"
+alt: "Bild der Spielecke"
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Die Dateinamen (`bild_hoch.jpg`, `bild_portrait.jpg`) müssen lediglich den Namen der Bilder entsprechen. `alt` ist Text der angezeigt wird, so lange das Bild noch nicht geladen ist oder für Leute mit Sehbehinderung.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### `/behandlungsangebot` & `/kosten`
 
-Any static assets, like images, can be placed in the `public/` directory.
+Beide Seiten werden basierend auf `.md` ([Markdown](https://www.markdownguide.org/cheat-sheet/)) Dateien erzeugt.
 
-## 🧞 Commands
+### `/kontakt` (Kontakt & Anfahrt) & `/therapeuten`
 
-All commands are run from the root of the project, from a terminal:
+Diese Seite ist weder Markdown noch wird sie ausschließlich aus Daten erzeugt. Die Liste der Kontaktdaten für das Team wird aus Daten erstellt, die in `src/content/therapeuten/` leben. Pro Team-Mitglied ist mindestens eine `.md` Datei und ein `.jpg` Bild (im `src/content/therapeuten` Ordner) erforderlich. Die `.md` Dateien werden mit einer Nummer begonnen, welche die Reihenfolge festlegt, in welcher die Team Mitglieder dargestellt werden.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Die `.md` Datei hat eine so genannte "frontmatter" Sektion (Bereich zwischen `---`). `photoAlt` ist wie vorhin ein Bild-Titel. Nach der frontmatter Sektion kann Markdown geschrieben werden (siehe `src/content/therapeuten/1-koennecke.md`). Ist diese nicht leer, so wird auf der "Therapeuten" Seite ein Link angezeigt, zu der Vita.
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Der Rest der "Kontakt & Anfahrt" Seite kann einfach in `src/pages/kontakt.astro` mittels HTML angepasst werden.

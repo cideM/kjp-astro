@@ -1,0 +1,120 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import googleMapsOverlayImg from "../images/praxis_maps.png";
+import GoogleMaps from "../components/GoogleMaps.astro";
+const therapeutenCollection = await getCollection("therapeuten");
+---
+
+<style>
+  address {
+    display: flex;
+    flex-flow: column nowrap;
+    & > * {
+      margin: 0;
+    }
+  }
+
+  #profiles {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1em;
+  }
+
+  #contact {
+    font-weight: bold;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+    border: 1px solid var(--border-color-primary);
+    padding: 1em;
+  }
+
+  main {
+    max-width: var(--main-content-max-width);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    gap: 4rem;
+    flex-flow: row wrap;
+    & > div {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 3em;
+    }
+    @media (min-width: 768px) {
+      & > div {
+        max-width: 45%;
+      }
+    }
+  }
+</style>
+
+<Layout title="Kontakt">
+  <main>
+    <div>
+      <article>
+        <h1>Vereinbarung von Erstgesprächen</h1>
+        <p>
+          Gerne können Sie oder kannst du uns telefonisch kontaktieren, um einen
+          Termin für ein persönliches Erstgespräch zu vereinbaren.
+        </p>
+        <address id="contact">
+          <p>
+            <a href="tel:015174369929">01517 / 4369929</a><br />
+            <a href="mailto:info@kjp-meerbusch.de">info@kjp-meerbusch.de</a>
+          </p>
+          <p>
+            Unsere Telefonischen Sprechzeiten sind:<br />
+             Montag: <time datetime="10:30">10:30</time>&mdash;<time
+              datetime="12:30">12:30</time
+            ><br />
+             Donnerstag: <time datetime="16:30">16:30</time>&mdash;<time
+              datetime="18:00">18:00</time
+            >
+          </p>
+        </address>
+      </article>
+      <div id="profiles">
+        {
+          therapeutenCollection.map((therapeut) => (
+            <section>
+              <h3>{therapeut.data.displayName}</h3>
+              <address>
+                <a href={`tel:${therapeut.data.phone}`}>
+                  {therapeut.data.phone}
+                </a>
+                <a href={`mailto:${therapeut.data.email}`}>
+                  {therapeut.data.email}
+                </a>
+              </address>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+    <div>
+      <article>
+        <h1>Adresse</h1>
+        <h2>Mit dem Auto</h2>
+        <p>Psychotherapeutische Praxis für Kinder und Jugendliche</p>
+        <p>
+          Moerser Straße 100 b 40667 Meerbusch Kostenlose Parkplätze sind direkt
+          an der Praxis vorhanden.
+        </p>
+        <h2>Mit öffentlichen Verkehrsmitteln</h2>
+        <p>Mit der U74 und U76 – Haltestelle Forsthaus</p>
+        <p>Mit dem Bus 829 und 830 – Haltestelle Blumenstraße</p>
+      </article>
+    </div>
+    <GoogleMaps
+      height={400}
+      src="https://www.google.com/maps/embed/v1/place?q=kjp%20meerbusch&key=AIzaSyCeZqv5ZJ6Y1b5x2beycG3v_graLoGZX7g"
+      allowFullScreen
+      imageProps={{
+        alt: "Google Maps Link zur Praxis",
+        src: googleMapsOverlayImg,
+      }}
+    />
+  </main>
+</Layout>

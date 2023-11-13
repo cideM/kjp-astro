@@ -1,4 +1,6 @@
 ---
+import Nav from "../components/Nav.astro";
+
 interface Props {
   title: string;
 }
@@ -17,35 +19,178 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <Nav />
     <slot />
+    <footer>
+      <section>
+        <p>Psychotherapeutische Praxis für Kinder und Jugendliche</p>
+        <address>
+          <a href="mailto:praxis@kjp-meerbusch.de">praxis@kjp-meerbusch.de</a>
+           // <a href="tel:021325819010">Tel. 02132/5810910</a>
+        </address>
+        <p>
+          <a href="/impressum">Impressum & Datenschutz</a>
+        </p>
+      </section>
+    </footer>
   </body>
 </html>
+
+<style>
+  footer {
+    text-align: center;
+    width: 100%;
+    background: var(--brand-background-color);
+    color: var(--brand-text-color);
+
+    & section {
+      max-width: var(--main-content-max-width);
+      margin: 0 auto;
+      align-items: center;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem;
+
+      & p {
+        margin: 0;
+      }
+    }
+  }
+</style>
+
 <style is:global>
   :root {
+    --page-background: 255, 255, 255;
+    --main-content-padding-x: 0rem;
+    --main-content-max-width: 1200px;
+    --content-padding-x: 0.5rem;
     --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
+    --stack-top-margin: 1rem;
+    --border-color-primary: hsla(0, 0%, 0%, 0.3);
+    --border-color-secondary: rgb(238, 238, 238);
+    --brand-background-color: rgb(0, 103, 127);
+    --text-color-primary: hsla(0, 0%, 0%, 0.8);
+    --brand-text-color: rgb(255, 255, 255);
   }
+
+  @media (min-width: 600px) {
+    :root {
+      --stack-top-margin: 2rem;
+      --main-content-padding-x: 5%;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    :root {
+      --main-content-padding-x: 15%;
+    }
+  }
+
+  address {
+    font-style: normal;
+    text-decoration: none;
+  }
+
+  p + ul,
+  p + ol {
+    margin-top: 0;
+  }
+
+  ol:last-of-type,
+  ul:last-of-type {
+    margin-bottom: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 0.6em;
+  }
+  h1:first-of-type {
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4em;
+  }
+  h2:first-of-type {
+    margin-top: 0;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25em;
+  }
+  h3:first-of-type {
+    margin-top: 0;
+  }
+
+  menu {
+    padding: 1em 1em;
+    margin: 0;
+  }
+
+  button {
+    font-size: inherit;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+    color: inherit;
+  }
+
   html {
-    font-family: system-ui, sans-serif;
-    background: #13151a;
-    background-size: 224px;
+    margin: 0;
+    font-size: 18px;
+    color: var(--text-color-primary);
+    line-height: 1.5;
+    font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", "Arial", sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol";
+    background: rgb(var(--page-background));
   }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
+
+  p:first-of-type {
+    margin-top: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  main {
+    flex-grow: 1;
+    padding: 3em 1em 4em 1em;
+
+    & > *:first-child {
+      margin-top: 0;
+    }
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 </style>

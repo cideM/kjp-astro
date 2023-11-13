@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import MarkdownPage from "../../layouts/MarkdownPage.astro";
+
+export async function getStaticPaths() {
+  const profiles = await getCollection("therapeuten");
+  return profiles.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<style>
+:global(h2 + h3) {
+  margin-top: 0rem;
+}
+:global(p + h2) {
+  margin-top: 3rem;
+}
+</style>
+
+<MarkdownPage frontmatter={entry.data}>
+  <h1>{entry.data.displayName}</h1>
+  <Content />
+</MarkdownPage>

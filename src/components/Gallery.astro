@@ -1,0 +1,125 @@
+---
+import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
+import type { GetImageResult } from "astro";
+
+const quality = 100;
+
+const formats = ["webp", "jpg"] as const;
+const widths = [300, 600, 900, 1200, 1500, 1800, 2100, 2400] as const;
+
+const landscapeSizes = "(min-width: 481px)";
+const portraitSizes = "(min-width: 320px) and (max-width: 480px)";
+
+const imagesCollection = await getCollection("gallerie");
+
+const results = imagesCollection.map(async (entry) => {
+  const {
+    data: { srcLandscape, srcPortrait, alt },
+  } = entry;
+
+  const landscape = await Promise.all(
+    formats.map((format) =>
+      getImage({
+        format,
+        widths,
+        quality,
+        src: srcLandscape,
+      }),
+    ),
+  );
+
+  const portrait = await Promise.all(
+    formats.map((format) =>
+      getImage({
+        format,
+        widths,
+        quality,
+        src: srcPortrait,
+      }),
+    ),
+  );
+
+  const fallbackImage = await getImage({
+    format: "jpg",
+    widths,
+    quality,
+    src: srcLandscape,
+  });
+
+  return {
+    landscape,
+    portrait,
+    fallbackImage,
+    alt,
+  };
+});
+
+const images: {
+  landscape: GetImageResult[];
+  portrait: GetImageResult[];
+  fallbackImage: GetImageResult;
+  alt: string;
+}[] = await Promise.all(results);
+---
+
+<style>
+  .swiper {
+    max-width: 100%;
+    max-height: 300px;
+    width: 100%;
+    aspect-ratio: 4/5;
+    @media (min-width: 481px) {
+      max-height: unset;
+      aspect-ratio: 3/1;
+    }
+  }
+
+  picture {
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+
+<div class="swiper">
+  <div class="swiper-wrapper">
+    {
+      images.map((image) => {
+        const { landscape, portrait, fallbackImage, alt } = image;
+        return (
+          <div class="swiper-slide">
+            <picture>
+              {landscape.map((getImageResult) => (
+                <source
+                  media={landscapeSizes}
+                  srcset={getImageResult.srcSet.attribute}
+                  {...getImageResult.attributes}
+                />
+              ))}
+              {portrait.map((getImageResult) => (
+                <source
+                  media={portraitSizes}
+                  srcset={getImageResult.srcSet.attribute}
+                  {...getImageResult.attributes}
+                />
+              ))}
+              <img src={fallbackImage.src} alt={alt} />
+            </picture>
+          </div>
+        );
+      })
+    }
+  </div>
+</div>
+
+<script>
+  import Swiper from "swiper";
+  import "swiper/css";
+  new Swiper(".swiper");
+</script>
