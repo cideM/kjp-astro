@@ -9,7 +9,7 @@ title: Impressum
 
 Praxisinhaberin:
 
-Dipl. Päd. Dr. rer. medic. Sonja Könnecke
+Dr. rer. medic. Dipl. Päd. Sonja Könnecke
 
 Telefon: 0 21 32/5 81 09 10
 
