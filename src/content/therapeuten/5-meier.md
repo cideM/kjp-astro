@@ -1,6 +1,6 @@
 ---
 displayName: "Dorian Meier"
-photo: "./foto_therapeut_leer.jpg"
+photo: "./meier.jpg"
 photoAlt: "Foto von Dorian Meier"
 slug: "meier"
 email: "meier@kjp-meerbusch.de"
