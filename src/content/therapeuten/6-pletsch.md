@@ -1,6 +1,6 @@
 ---
 displayName: "Vivien Pletsch"
-photo: "./foto_therapeut_leer.jpg"
+photo: "./pletsch.jpeg"
 photoAlt: "Foto von Vivien Pletsch"
 slug: "pletsch"
 email: "pletsch@kjp-meerbusch.de"
