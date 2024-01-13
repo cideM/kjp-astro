@@ -1,6 +1,6 @@
 ---
 displayName: "Eva Ganz"
-photo: "./ganz.jpg"
+photo: "./ganz.jpeg"
 photoAlt: "Foto von Eva Ganz"
 slug: "ganz"
 email: "ganz@kjp-meerbusch.de"
