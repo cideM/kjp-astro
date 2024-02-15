@@ -5,7 +5,7 @@ title: Behandlungsangebot
 
 # Behandlungsangebot
 
-Unser Behandlungsangebot richtet sich an Kinder, Jugendliche, junge Erwachsene bis zum vollendeten 21. Lebensjahr und deren Eltern. Sollte nach einer ausführlichen Diagnostik der Wunsch und die Indikation für eine Psychotherapie bestehen, wird zusammen mit dem behandelnden Therapeuten ein individueller Behandlungsplan erstellt.
+Unser Behandlungsangebot richtet sich an Kinder, Jugendliche und junge Erwachsene bis 21 Jahre. Sollte nach einer ausführlichen Diagnostik der Wunsch und die Indikation für eine Psychotherapie bestehen, wird zusammen mit dem behandelnden Therapeuten ein individueller Behandlungsplan erstellt.
 
 ## Mögliche Gründe für eine Psychotherapie
 
