@@ -15,10 +15,6 @@ Die Kosten einer Psychotherapie werden von den gesetzlichen Krankenkassen getrag
 
 Die Regelungen für die Kostenübernahme einer Psychotherapie sind bei den privaten Versicherungen vertragsabhängig. In der Regel werden die Kosten für eine ambulante Psychotherapie übernommen. Sie können sich bei Ihrer Krankenkasse diesbezüglich vorab informieren. Die Honorierung orientiert sich an der Gebührenordnung für Psychotherapeuten (GOP).
 
-## Beihilfeberechtigt
-
-Bei Personen, die über die Beihilfestelle versichert sind, übernimmt die Beihilfe 80 % der Kosten, 20 % werden von der privaten Krankenversicherung übernommen.
-
 ## Selbstzahler
 
 Die Kosten einer Psychotherapie können selbstverständlich auch selber getragen werden. Die Vergütung orientiert sich an der Gebührenordnung für Psychotherapeuten (GOP).
