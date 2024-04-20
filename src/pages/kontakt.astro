@@ -1,34 +1,40 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import RoundPicture from "../components/RoundPicture.astro";
 import googleMapsOverlayImg from "../images/praxis_maps.png";
+import schuellner from "../images/schuellner.jpg";
 import GoogleMaps from "../components/GoogleMaps.astro";
 const therapeutenCollection = await getCollection("therapeuten");
 ---
 
 <style>
-  address {
+  article {
     display: flex;
+    gap: 0.75em;
     flex-flow: column nowrap;
   }
 
-  address > * {
+  .center {
+    align-self: center;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
     margin: 0;
+  }
+
+  address {
+    display: flex;
+    flex-flow: column nowrap;
   }
 
   #profiles {
     display: flex;
     flex-flow: column;
     gap: 1em;
-  }
-
-  #contact {
-    font-weight: bold;
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 1em;
-    border: 1px solid var(--border-color-primary);
-    padding: 1em;
   }
 
   main {
@@ -59,20 +65,24 @@ const therapeutenCollection = await getCollection("therapeuten");
       <article>
         <h1>Vereinbarung von Erstgesprächen</h1>
         <p>
-          Gerne können Sie oder kannst du uns telefonisch kontaktieren, um einen
-          Termin für ein persönliches Erstgespräch zu vereinbaren.
+          Um ein persönliches Erstgespräch zu vereinbaren, können Sie sich oder
+          kannst du dich gerne an unsere Praxismanagerin <b>Carena Schüllner</b>
+          wenden.
         </p>
+        <div class="center">
+          <RoundPicture src={schuellner} alt="Praxismanagering" size={300} />
+        </div>
         <address id="contact">
-          <p>
-            <a href="tel:015174369929">01517 / 4369929</a><br />
-            <a href="mailto:info@kjp-meerbusch.de">info@kjp-meerbusch.de</a>
-          </p>
-          <p>
-            Bitte entnehmen Sie die aktuellen telefonischen Sprechzeiten immer unserer Mailboxansage.
-          </p>
+          <a href="tel:015174369929">01517 / 4369929</a>
+          <a href="mailto:info@kjp-meerbusch.de">info@kjp-meerbusch.de</a>
         </address>
+        <p>
+          Bitte entnehmen Sie die aktuellen telefonischen Sprechzeiten immer
+          unserer Mailboxansage.
+        </p>
       </article>
       <div id="profiles">
+        <h1>Persönliche Kontaktdaten unserer Therapeuten</h1>
         {
           therapeutenCollection.map((therapeut) => (
             <section>
@@ -94,10 +104,11 @@ const therapeutenCollection = await getCollection("therapeuten");
       <article>
         <h1>Anreise</h1>
         <h2>Mit dem Auto</h2>
-        <p>Psychotherapeutische Praxis für Kinder und Jugendliche<br />
-          Moerser Straße 100b 40667 Meerbusch</p>
-          <p>Kostenlose Parkplätze sind direkt an der Praxis vorhanden. 
+        <p>
+          Psychotherapeutische Praxis für Kinder und Jugendliche<br />
+           Moerser Straße 100b 40667 Meerbusch
         </p>
+        <p>Kostenlose Parkplätze sind direkt an der Praxis vorhanden.</p>
         <h2>Mit öffentlichen Verkehrsmitteln</h2>
         <p>Mit der U74 und U76 – Haltestelle Forsthaus</p>
         <p>Mit dem Bus 829 und 830 – Haltestelle Blumenstraße</p>

@@ -7,10 +7,10 @@ const { size, alt, src, ...props } = Astro.props;
   div :global(picture) {
     border-radius: 10000px;
     overflow: hidden;
-    min-width: var(--size);
-    width: var(--size);
-    height: var(--size);
-    min-height: var(--size);
+    min-width: calc(var(--size) * 1px);
+    width: calc(var(--size) * 1px);
+    height: calc(var(--size) * 1px);
+    min-height: calc(var(--size) * 1px);
   }
 
   div :global(img) {
