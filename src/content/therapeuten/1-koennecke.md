@@ -4,7 +4,7 @@ photo: "./koennecke.jpg"
 photoAlt: "Foto von Dr. Sonja Könnecke"
 slug: "koennecke"
 email: "praxis@kjp-meerbusch.de"
-phone: "Tel. 0151 / 58331002"
+phone: "0151 / 58331002"
 ---
 
 ## Seit 2019
