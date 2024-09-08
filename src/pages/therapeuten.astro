@@ -31,6 +31,11 @@ const allTherapeuten = await getCollection("therapeuten");
     gap: 2em;
   }
 
+  article picture img {
+    max-width: 350px;
+    max-height: 400px;
+  }
+
   article {
     border: 1px solid var(--border-color-secondary);
     display: flex;
@@ -70,8 +75,8 @@ const allTherapeuten = await getCollection("therapeuten");
             <article>
               <Picture
                 src={data.photo}
-                width={350}
-                height={400}
+                width={700}
+                quality={80}
                 alt={data.photoAlt}
               />
               <h2>
