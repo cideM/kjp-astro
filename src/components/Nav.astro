@@ -22,16 +22,14 @@ const routes = [
   }
 
   header > div {
-    max-width: var(--main-content-max-width);
-    margin: 0 auto;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    padding-top: 0.5rem;
   }
 
   header {
+    height: 80px;
     position: sticky;
     top: 0;
     background: var(--background-color-primary, white);
@@ -39,6 +37,10 @@ const routes = [
     border-bottom: 1px solid var(--border-color-secondary);
     width: 100%;
     padding: 0 1rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
   }
 
   button {
@@ -56,7 +58,27 @@ const routes = [
     list-style: none;
   }
 
+  .logo {
+    max-width: 150px;
+    max-height: 80px;
+  }
+
+  .logo img {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (min-width: 401px) {
+    .logo {
+      max-width: 200px;
+    }
+  }
+
   @media (min-width: 1201px) {
+    .logo {
+      max-width: 200px;
+    }
+
     button[aria-haspopup="menu"] {
       display: none;
     }
@@ -68,6 +90,12 @@ const routes = [
 
     nav li {
       display: inline-block;
+    }
+  }
+
+  @media (min-width: 1901px) {
+    header {
+      padding: 0 25vh;
     }
   }
 
@@ -108,26 +136,24 @@ const routes = [
 </script>
 
 <header>
-  <div>
-    <a href="/">
-      <div class="logo">
-        <Picture src={logo} height={80} quality="max" alt="Logo" />
-      </div>
-    </a>
-    <nav id="desktop" aria-label="Menü">
-      <menu>
-        {
-          routes.map(({ text, href }) => (
-            <li>
-              <a href={href}>{text}</a>
-            </li>
-          ))
-        }
-      </menu>
-    </nav>
+  <a href="/">
+    <div class="logo">
+      <Picture src={logo} width={1400} quality="max" alt="Logo" />
+    </div>
+  </a>
+  <nav id="desktop" aria-label="Menü">
+    <menu>
+      {
+        routes.map(({ text, href }) => (
+          <li>
+            <a href={href}>{text}</a>
+          </li>
+        ))
+      }
+    </menu>
+  </nav>
 
-    <button aria-haspopup="menu" aria-label="Menü öffnen" type="button"
-      ><Fragment set:html={Menu} /> Menü</button
-    >
-  </div>
+  <button aria-haspopup="menu" aria-label="Menü öffnen" type="button"
+    ><Fragment set:html={Menu} /> Menü</button
+  >
 </header>
