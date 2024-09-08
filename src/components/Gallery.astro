@@ -3,19 +3,18 @@ import { getCollection } from "astro:content";
 import { getImage } from "astro:assets";
 import type { GetImageResult } from "astro";
 
-const quality = 100;
+const quality = 80;
 
 const formats = ["webp", "jpg"] as const;
 const widths = [300, 600, 900, 1200, 1500, 1800, 2100, 2400] as const;
 
 const landscapeSizes = "(min-width: 481px)";
-const portraitSizes = "(min-width: 320px) and (max-width: 480px)";
 
 const imagesCollection = await getCollection("gallerie");
 
 const results = imagesCollection.map(async (entry) => {
   const {
-    data: { srcLandscape, srcPortrait, alt },
+    data: { srcLandscape, alt },
   } = entry;
 
   const landscape = await Promise.all(
@@ -29,17 +28,6 @@ const results = imagesCollection.map(async (entry) => {
     ),
   );
 
-  const portrait = await Promise.all(
-    formats.map((format) =>
-      getImage({
-        format,
-        widths,
-        quality,
-        src: srcPortrait,
-      }),
-    ),
-  );
-
   const fallbackImage = await getImage({
     format: "jpg",
     widths,
@@ -49,7 +37,6 @@ const results = imagesCollection.map(async (entry) => {
 
   return {
     landscape,
-    portrait,
     fallbackImage,
     alt,
   };
@@ -57,7 +44,6 @@ const results = imagesCollection.map(async (entry) => {
 
 const images: {
   landscape: GetImageResult[];
-  portrait: GetImageResult[];
   fallbackImage: GetImageResult;
   alt: string;
 }[] = await Promise.all(results);
@@ -66,13 +52,9 @@ const images: {
 <style>
   .swiper {
     max-width: 100%;
-    max-height: 300px;
+    max-height: 550px;
     width: 100%;
-    aspect-ratio: 4/5;
-    @media (min-width: 481px) {
-      max-height: unset;
-      aspect-ratio: 3/1;
-    }
+    aspect-ratio: 16/9
   }
 
   picture {
@@ -91,20 +73,13 @@ const images: {
   <div class="swiper-wrapper">
     {
       images.map((image) => {
-        const { landscape, portrait, fallbackImage, alt } = image;
+        const { landscape, fallbackImage, alt } = image;
         return (
           <div class="swiper-slide">
             <picture>
               {landscape.map((getImageResult) => (
                 <source
                   media={landscapeSizes}
-                  srcset={getImageResult.srcSet.attribute}
-                  {...getImageResult.attributes}
-                />
-              ))}
-              {portrait.map((getImageResult) => (
-                <source
-                  media={portraitSizes}
                   srcset={getImageResult.srcSet.attribute}
                   {...getImageResult.attributes}
                 />
