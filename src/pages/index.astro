@@ -1,8 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import RoundPicture from "../components/RoundPicture.astro";
 import Gallery from "../components/Gallery.astro";
 import sonja from "../images/sonja_portrait.jpg";
+import Picture from "astro/components/Picture.astro";
 ---
 
 <style>
@@ -24,6 +24,14 @@ import sonja from "../images/sonja_portrait.jpg";
     justify-content: center;
   }
 
+  .roundPicture img {
+    overflow: hidden;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+  }
+
   article div {
     max-width: 45em;
   }
@@ -33,11 +41,13 @@ import sonja from "../images/sonja_portrait.jpg";
   <Gallery />
   <main>
     <article>
-      <RoundPicture src={sonja} size={250} alt="Sonja" />
+      <div class="roundPicture">
+        <Picture src={sonja} width={300} height={300} alt="Sonja" />
+      </div>
       <div>
         <p>
           Liebe Kinder und Jugendliche,<br />
-           sehr geehrte Eltern,
+          sehr geehrte Eltern,
         </p>
         <p>
           herzlich willkommen in unserer psychotherapeutischen Praxis für Kinder

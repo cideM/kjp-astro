@@ -1,10 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
-import RoundPicture from "../components/RoundPicture.astro";
 import googleMapsOverlayImg from "../images/praxis_maps.png";
-import schuellner from "../images/schuellner.jpg";
+import schuellner from "../images/schuellner_cropped.jpg";
 import GoogleMaps from "../components/GoogleMaps.astro";
+import Picture from "astro/components/Picture.astro";
 const therapeutenCollection = await getCollection("therapeuten");
 ---
 
@@ -57,6 +57,14 @@ const therapeutenCollection = await getCollection("therapeuten");
       max-width: 45%;
     }
   }
+
+  .roundPicture img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+  }
 </style>
 
 <Layout title="Kontakt">
@@ -69,8 +77,14 @@ const therapeutenCollection = await getCollection("therapeuten");
           kannst du dich gerne an unsere Praxismanagerin <b>Carena Schüllner</b>
           wenden.
         </p>
-        <div class="center">
-          <RoundPicture src={schuellner} alt="Praxismanagering" size={300} />
+        <div class="center roundPicture">
+          <Picture
+            src={schuellner}
+            height={700}
+            width={700}
+            quality={80}
+            alt="Praxismanagering"
+          />
         </div>
         <address id="contact">
           <a href="tel:015174369929">01517 / 4369929</a>
@@ -106,7 +120,7 @@ const therapeutenCollection = await getCollection("therapeuten");
         <h2>Mit dem Auto</h2>
         <p>
           Psychotherapeutische Praxis für Kinder und Jugendliche<br />
-           Moerser Straße 100b 40667 Meerbusch
+          Moerser Straße 100b 40667 Meerbusch
         </p>
         <p>Kostenlose Parkplätze sind direkt an der Praxis vorhanden.</p>
         <h2>Mit öffentlichen Verkehrsmitteln</h2>
