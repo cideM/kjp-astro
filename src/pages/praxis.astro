@@ -21,6 +21,7 @@ const formats = ["webp", "jpg"];
     flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
+    justify-content: center;
   }
 
   main section :global(picture) {
@@ -50,7 +51,7 @@ const formats = ["webp", "jpg"];
               decoding="async"
               loading="eager"
               width={800}
-              quality={50}
+              quality={75}
               height={800}
               formats={formats}
             />
