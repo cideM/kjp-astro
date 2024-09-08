@@ -7,6 +7,7 @@ const routes = [
   { text: "Behandlungsangebot", href: "/behandlungsangebot" },
   { text: "Praxis", href: "/praxis" },
   { text: "Therapeuten", href: "/therapeuten" },
+  { text: "Leistungen", href: "/leistungen" },
   { text: "Kosten", href: "/kosten" },
   { text: "Kontakt & Anfahrt", href: "/kontakt" },
 ];
@@ -15,7 +16,7 @@ const routes = [
 <style>
   header a,
   a:visited {
-    font-weight: bold;
+    font-weight: 600;
     text-decoration: none;
   }
 
@@ -43,6 +44,7 @@ const routes = [
     display: flex;
     align-items: center;
     color: inherit;
+    cursor: pointer;
     gap: 0.5em;
     background: none;
     border: none;
@@ -53,14 +55,14 @@ const routes = [
     list-style: none;
   }
 
-  @media (min-width: 1001px) {
+  @media (min-width: 1201px) {
     button[aria-haspopup="menu"] {
       display: none;
     }
 
     nav menu {
       display: flex;
-      gap: 2em;
+      gap: 1.5em;
     }
 
     nav li {
@@ -68,7 +70,7 @@ const routes = [
     }
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1200px) {
     nav li {
       width: 100%;
       padding: 0.5em 0;
