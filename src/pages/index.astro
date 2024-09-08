@@ -14,7 +14,7 @@ import Picture from "astro/components/Picture.astro";
   }
 
   article {
-    max-width: var(--main-content-max-width);
+    max-width: min(100%, var(--main-content-max-width));
     width: 100%;
     gap: 2em;
     display: flex;
@@ -33,7 +33,7 @@ import Picture from "astro/components/Picture.astro";
   }
 
   article div {
-    max-width: 45em;
+    max-width: min(100%, var(--main-content-max-width));
   }
 </style>
 

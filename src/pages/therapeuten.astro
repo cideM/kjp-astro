@@ -19,16 +19,11 @@ const allTherapeuten = await getCollection("therapeuten");
   main {
     margin: auto;
     text-align: center;
-    max-width: var(--main-content-max-width);
+    max-width: min(100%, var(--main-content-max-width));
     width: 100%;
   }
 
   main > section {
-    justify-content: start;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 2em;
   }
 
   article picture img {
@@ -56,12 +51,19 @@ const allTherapeuten = await getCollection("therapeuten");
   article span :global(svg) {
     margin-right: 0.5em;
   }
+
+  .cardsWrapper {
+    display: flex;
+    gap: 3em;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 </style>
 
 <Layout title="KJP Meerbusch">
   <main>
     <h1>Therapeuten</h1>
-    <section>
+    <div class="cardsWrapper">
       {
         allTherapeuten.map(({ slug, data, body }) => {
           const withoutWhitespace = body.replace(/\s/g, "");
@@ -90,6 +92,6 @@ const allTherapeuten = await getCollection("therapeuten");
           );
         })
       }
-    </section>
+    </div>
   </main>
 </Layout>

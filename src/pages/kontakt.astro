@@ -38,7 +38,7 @@ const therapeutenCollection = await getCollection("therapeuten");
   }
 
   main {
-    max-width: var(--main-content-max-width);
+    max-width: min(100%, var(--main-content-max-width));
     width: 100%;
     margin: 0 auto;
     display: flex;

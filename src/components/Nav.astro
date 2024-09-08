@@ -15,32 +15,42 @@ const routes = [
 ---
 
 <style>
+  nav {
+    background: white;
+  }
+
   header a,
   a:visited {
     font-weight: 600;
     text-decoration: none;
   }
 
-  header > div {
+  .logoAndButton {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
+    flex-grow: 1;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+
+  .logoAndButton img {
+    margin-left: 1em;
+  }
+
+  .logoAndButton button {
+    margin-right: 1em;
   }
 
   header {
-    height: 80px;
+    max-height: 80px;
     position: sticky;
     top: 0;
-    background: var(--background-color-primary, white);
+    background: white;
     z-index: 100;
     border-bottom: 1px solid var(--border-color-secondary);
     width: 100%;
-    padding: 0 1rem;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
   }
 
   button {
@@ -99,6 +109,12 @@ const routes = [
     }
   }
 
+  @media (max-width:300px) {
+    .logo {
+      display: none;
+    }
+  }
+
   @media (max-width: 1200px) {
     nav li {
       width: 100%;
@@ -111,7 +127,6 @@ const routes = [
     }
 
     nav[aria-expanded="true"] {
-      display: unset;
       width: 100%;
       order: 3;
     }
@@ -136,24 +151,25 @@ const routes = [
 </script>
 
 <header>
-  <a href="/">
-    <div class="logo">
-      <Picture src={logo} width={1400} quality="max" alt="Logo" />
-    </div>
-  </a>
-  <nav id="desktop" aria-label="Menü">
-    <menu>
-      {
-        routes.map(({ text, href }) => (
-          <li>
-            <a href={href}>{text}</a>
-          </li>
-        ))
-      }
-    </menu>
-  </nav>
-
-  <button aria-haspopup="menu" aria-label="Menü öffnen" type="button"
-    ><Fragment set:html={Menu} /> Menü</button
-  >
+  <div class="logoAndButton">
+    <a href="/">
+      <div class="logo">
+        <Picture src={logo} width={1500} quality="max" alt="Logo" />
+      </div>
+    </a>
+    <button aria-haspopup="menu" aria-label="Menü öffnen" type="button"
+      ><Fragment set:html={Menu} /> Menü</button
+    >
+    <nav id="desktop" aria-label="Menü">
+      <menu>
+        {
+          routes.map(({ text, href }) => (
+            <li>
+              <a href={href}>{text}</a>
+            </li>
+          ))
+        }
+      </menu>
+    </nav>
+  </div>
 </header>

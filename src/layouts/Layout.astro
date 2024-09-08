@@ -43,7 +43,7 @@ const { title } = Astro.props;
   }
 
   footer div {
-    max-width: var(--main-content-max-width);
+    max-width: min(100%, var(--main-content-max-width));
     margin: 0 auto;
     align-items: center;
     width: 100%;

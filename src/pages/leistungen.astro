@@ -8,6 +8,8 @@ import Layout from "../layouts/Layout.astro";
     grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 2rem;
     list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
   h1 {
@@ -19,6 +21,9 @@ import Layout from "../layouts/Layout.astro";
   }
 
   main {
+    margin: auto;
+    max-width: min(100%, var(--main-content-max-width));
+    align-items: center;
     display: flex;
     flex-direction: column;
   }
