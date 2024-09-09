@@ -3,6 +3,6 @@ layout: '../layouts/MarkdownPage.astro'
 title: Karriere
 ---
 
-Aktuelle offene Stellen:
+# Aktuelle offene Stellen
 
 TODO
