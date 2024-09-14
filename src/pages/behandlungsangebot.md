@@ -5,19 +5,19 @@ title: Behandlungsangebot
 
 # Behandlungsangebot
 
-Unser Behandlungsangebot richtet sich an Kinder, Jugendliche und junge Erwachsene bis 21 Jahre. Sollte nach einer ausführlichen Diagnostik der Wunsch und die Indikation für eine Psychotherapie bestehen, wird zusammen mit dem behandelnden Therapeuten ein individueller Behandlungsplan erstellt.
+Unser Behandlungsangebot richtet sich an Kinder, Jugendliche und junge Erwachsene bis 21 Jahre. Sollte nach einer ausführlichen Diagnostik der Wunsch und die Indikation für eine Psychotherapie bestehen, wird zusammen mit der/ dem behandelnden Therapeut:in ein individueller Behandlungsplan erstellt.
 
 ## Mögliche Gründe für eine Psychotherapie
 
-- Probleme in der Schule, Ausbildung oder Studium, beispielsweise in Form von schlechten Noten oder Leistungsdruck
-- Schwierigkeiten in der Beziehung zu Eltern, Lehrern und / oder Gleichaltrigen (beispielsweise immer wieder in heftige Konflikte geraten oder gemobbt werden)
-- aggressive oder oppositionelle Verhaltensweisen, z.B. ausgeprägte Verweigerung von Aufforderungen und Regeln von Erwachsenen oder häufiger Streit mit anderen Kindern
-- Gefühle von Traurigkeit, Einsamkeit, Lustlosigkeit oder ein geringes Selbstwertgefühl
-- Ängste vor Kontakten mit Gleichaltrigen oder Erwachsenen, Schüchternheit; Ängste vor der Schule, vor Prüfungen und Klassenarbeiten; Angst von den Eltern getrennt zur werden; Ängste vor Tieren oder Krankheiten
-- übermäßige Unaufmerksamkeit, motorische Unruhe und Impulsivität
-- Bauch-, Kopfschmerzen oder andere Schmerzen, die durch keine körperliche Krankheit erklärt werden und auch mit Fehlzeiten in der Schule einhergehen können
-- einschießende Zuckungen (z.B. im Gesicht) oder Lautäußerungen (z.B. Räuspern), welche sich nicht oder nur schwer unterdrücken lassen
-- Einnässen nachts oder tagsüber oder Einkoten
-- sich aufdrängende Gedanken sowie Handlungen, die sehr oft wiederholt werden müssen (z.B. Waschen der Hände, Kontrollieren von Dingen)
-- auffälliges Essverhalten (z.B. deutliches Untergewicht, selbst herbeigeführtes Erbrechen, Übergewicht)
-- grundlegende Defizite, mit anderen Menschen Kontakte zu knüpfen und Freundschaften zu schließen, ausgefallene Interessen und Stereotypien
+- **Zwangsgedanken und Zwangshandlungen** sich aufdrängende Gedanken; Handlungen, die oft wiederholt werden müssen (z.B. Waschen der Hände, Kontrollieren von Dingen)
+- **Ängste und Phobien** z.B. Angst vor Kontakten mit Gleichaltrigen oder Erwachsenen; Angst vor der Schule/ Klassenarbeiten; Angst von den Eltern getrennt zu sein; Angst vor Tieren oder Krankheiten
+- **Depression** z.B. Gefühle von Traurigkeit, Einsamkeit, Lustlosigkeit oder ein geringes Selbstwertgefühl
+- **ADS/ADHS (Aktivitäts- und Aufmerksamkeitsstörungen)** übermäßige Unaufmerksamkeit, motorische Unruhe und Impulsivität
+- **Störung des Sozialverhaltens** aggressive oder oppositionelle Verhaltensweisen, z.B. ausgeprägte Verweigerung von Regeln oder häufiger (körperlicher) Streit mit anderen Kindern
+- **Essstörung** z.B. selbst herbeigeführtes Untergewicht, Erbrechen, Essattacken
+- **Tic-Störung** einschießende Zuckungen (z.B. im Gesicht) oder Lautäußerungen (z.B. Räuspern), welche sich nicht oder nur schwer unterdrücken lassen
+- **Enuresis und Enkopresis** Einnässen nachts und/ oder tagsüber oder Einkoten
+- **Psychosomatische Beschwerden** z.B. Bauch-, Kopfschmerzen oder andere Schmerzen, die durch keine körperliche Krankheit erklärt werden und auch mit Fehlzeiten in der Schule einhergehen können
+- **Mutismus** emotional bedingte Selektivität des Sprechens (Kind kann in einigen Situationen sprechen, in anderen jedoch nicht)
+- **Traumafolgestörungen oder Anpassungsstörung** Folge eines außergewöhnlich belastenden Lebensereignisses (z.B. Tod eines Angehörigen, Trennung der Eltern, Gewalterfahrung)
+- **Autismusspektrumsstörung** grundlegende Defizite mit anderen Menschen Kontakte zu knüpfen und Freundschaften zu schließen, ausgefallene Interessen und Stereotypien

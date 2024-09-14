@@ -1,8 +1,8 @@
 ---
-displayName: "Esther Berresheim"
-photo: "./berresheim.jpg"
-photoAlt: "Foto von Esther Berresheim"
-slug: "berresheim"
-email: "berresheim@kjp-meerbusch.de"
+displayName: "Sarah Jax"
+photo: "./foto_therapeut_leer.jpg"
+photoAlt: "Platzhalter"
+slug: "jax"
+email: "jax@kjp-meerbusch.de"
 phone: "0160 / 6064408"
 ---

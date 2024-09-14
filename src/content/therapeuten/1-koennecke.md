@@ -1,6 +1,6 @@
 ---
 displayName: "Dr. Sonja Könnecke"
-photo: "./koennecke.jpg"
+photo: "./koennecke_klein.jpg"
 photoAlt: "Foto von Dr. Sonja Könnecke"
 slug: "koennecke"
 email: "praxis@kjp-meerbusch.de"
