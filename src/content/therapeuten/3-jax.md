@@ -1,6 +1,6 @@
 ---
 displayName: "Sarah Jax"
-photo: "./foto_therapeut_leer.jpg"
+photo: "./jax.jpg"
 photoAlt: "Platzhalter"
 slug: "jax"
 email: "jax@kjp-meerbusch.de"
