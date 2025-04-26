@@ -4,7 +4,7 @@ photo: "./koennecke_klein.jpg"
 photoAlt: "Foto von Dr. Sonja Könnecke"
 slug: "koennecke"
 email: "praxis@kjp-meerbusch.de"
-phone: "015174369929"
+phone: "0151 / 74369929"
 ---
 
 ## Seit 2019
