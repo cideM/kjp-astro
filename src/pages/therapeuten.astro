@@ -12,6 +12,11 @@ const allTherapeuten = await getCollection("therapeuten");
     object-position: center;
   }
 
+  h3 {
+    font-size: 1em;
+    color: var(--brand-background-color);
+  }
+
   main :global(picture) {
     width: 100%;
   }
@@ -65,32 +70,37 @@ const allTherapeuten = await getCollection("therapeuten");
     <h1>Therapeuten</h1>
     <div class="cardsWrapper">
       {
-        allTherapeuten.map(({ slug, data, body }) => {
-          const withoutWhitespace = body.replace(/\s/g, "");
-          const hasVita = withoutWhitespace?.length > 0;
-          const profileName = (
-            <span>
-              {hasVita && <Fragment set:html={FileText} />} {data.displayName}
-            </span>
-          );
-          return (
-            <article>
-              <Picture
-                src={data.photo}
-                width={700}
-                quality={80}
-                alt={data.photoAlt}
-              />
-              <h2>
-                {hasVita ? (
-                  <a href={`/therapeuten/${slug}`}>{profileName}</a>
-                ) : (
-                  profileName
-                )}
-              </h2>
-            </article>
-          );
-        })
+        allTherapeuten
+          .sort((a, b) => {
+            return a.id.localeCompare(b.id);
+          })
+          .map(({ slug, data, body }) => {
+            const withoutWhitespace = body ? body.trim() : body;
+            const hasVita = withoutWhitespace?.length > 0;
+            const profileName = (
+              <span>
+                {hasVita && <Fragment set:html={FileText} />} {data.displayName}
+              </span>
+            );
+            return (
+              <article>
+                <Picture
+                  src={data.photo}
+                  width={700}
+                  quality={80}
+                  alt={data.photoAlt}
+                />
+                <h2>
+                  {hasVita ? (
+                    <a href={`/therapeuten/${slug}`}>{profileName}</a>
+                  ) : (
+                    profileName
+                  )}
+                </h2>
+                <h3>{data.subtitle}</h3>
+              </article>
+            );
+          })
       }
     </div>
   </main>

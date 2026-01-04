@@ -1,0 +1,60 @@
+---
+interface Props {
+  heading: string;
+  open?: boolean;
+}
+
+const { heading, open = false } = Astro.props;
+---
+
+<details open={open}>
+  <summary>{heading}</summary>
+  <div class="content">
+    <slot />
+  </div>
+</details>
+
+<style>
+  details {
+    border: 1px solid var(--border-color-secondary);
+    border-radius: 4px;
+    padding: 1em;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    user-select: none;
+    list-style: none;
+  }
+
+  /* Remove default marker in Safari */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Custom arrow indicator */
+  summary::before {
+    content: "▶";
+    display: inline-block;
+    margin-right: 0.5em;
+    transition: transform 0.2s;
+  }
+
+  details[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  summary:hover {
+    color: var(--color-accent);
+  }
+
+  summary:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .content {
+    margin-top: 1em;
+  }
+</style>

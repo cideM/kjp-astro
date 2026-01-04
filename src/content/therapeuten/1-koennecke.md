@@ -1,11 +1,16 @@
 ---
 displayName: "Dr. Sonja Könnecke"
 photo: "./koennecke_klein.jpg"
+subtitle: "Kinder- und Jugendlichenpsychotherapeutin (VT)"
 photoAlt: "Foto von Dr. Sonja Könnecke"
-slug: "koennecke"
+slug: "1_koennecke"
 email: "praxis@kjp-meerbusch.de"
 phone: "0151 / 74369929"
 ---
+
+## Seit 2025
+
+Akkreditierte Supervisorin durch die Psychotherapeuten Kammer NRW
 
 ## Seit 2019
 
