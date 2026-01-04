@@ -1,7 +1,8 @@
 import { z, defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
 
 const therapeuten = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/therapeuten" }),
   schema: ({ image }) =>
     z.object({
       displayName: z.string(),
@@ -13,17 +14,10 @@ const therapeuten = defineCollection({
 });
 
 const gallerie = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "**/*.yaml", base: "./src/content/gallerie" }),
   schema: ({ image }) =>
     z.object({
-      srcLandscape: image().refine(
-        (img) => Math.round(img.width / img.height) === 2,
-        (img) => ({
-          message: `Landscape images must have a 16:9 aspect ratio but was ${Math.round(
-            img.width / img.height,
-          )}}`,
-        }),
-      ),
+      srcLandscape: image(),
       alt: z.string(),
     }),
 });
