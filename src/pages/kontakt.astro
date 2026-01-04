@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import googleMapsOverlayImg from "../images/praxis_maps.png";
-import schuellner from "../images/schuellner_cropped.jpg";
+import manager from "../images/schuellner_cropped.jpg";
 import GoogleMaps from "../components/GoogleMaps.astro";
 import Picture from "astro/components/Picture.astro";
 const therapeutenCollection = await getCollection("therapeuten");
@@ -74,12 +74,13 @@ const therapeutenCollection = await getCollection("therapeuten");
         <h1>Vereinbarung von Erstgesprächen</h1>
         <p>
           Um ein persönliches Erstgespräch zu vereinbaren, können Sie sich oder
-          kannst du dich gerne an unsere Praxismanagerin <b>Carena Schüllner</b>
+          kannst du dich gerne an unsere Praxismanagerin <b>Selena Costantini</b
+          >
           wenden.
         </p>
         <div class="center roundPicture">
           <Picture
-            src={schuellner}
+            src={manager}
             height={700}
             width={700}
             quality={80}

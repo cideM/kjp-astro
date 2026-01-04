@@ -6,6 +6,8 @@ const therapeuten = defineCollection({
   schema: ({ image }) =>
     z.object({
       displayName: z.string(),
+      subtitle: z.string(),
+      slug: z.string(),
       photo: image(),
       photoAlt: z.string(),
       email: z.string().email(),
