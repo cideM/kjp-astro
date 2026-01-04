@@ -12,21 +12,21 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.8.1",
-    "astro": "^4.11.5",
+    "@astrojs/check": "^0.9.6",
+    "astro": "^5.16.6",
     "feather-icons": "^4.29.2",
-    "swiper": "^11.1.4"
+    "swiper": "^12.0.3"
   },
   "devDependencies": {
-    "@eslint/js": "^9.7.0",
+    "@eslint/js": "^9.39.2",
     "@types/eslint__js": "^8.42.3",
-    "@typescript-eslint/parser": "^8.0.0-alpha.42",
-    "eslint": "^9.7.0",
-    "eslint-plugin-astro": "^1.2.3",
-    "npm-check-updates": "^16.14.20",
-    "prettier": "^3.3.3",
-    "prettier-plugin-astro": "^0.14.0",
-    "typescript": "^5.5.3",
-    "typescript-eslint": "^8.0.0-alpha.10"
+    "@typescript-eslint/parser": "^8.51.0",
+    "eslint": "^9.39.2",
+    "eslint-plugin-astro": "^1.5.0",
+    "npm-check-updates": "^19.2.1",
+    "prettier": "^3.7.4",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.51.0"
   }
 }
