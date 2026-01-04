@@ -74,9 +74,9 @@ const allTherapeuten = await getCollection("therapeuten");
           .sort((a, b) => {
             return a.id.localeCompare(b.id);
           })
-          .map(({ slug, data, body }) => {
+          .map(({ data, body }) => {
             const withoutWhitespace = body ? body.trim() : body;
-            const hasVita = withoutWhitespace?.length > 0;
+            const hasVita = withoutWhitespace ? withoutWhitespace.length > 0 : false;
             const profileName = (
               <span>
                 {hasVita && <Fragment set:html={FileText} />} {data.displayName}
@@ -92,7 +92,7 @@ const allTherapeuten = await getCollection("therapeuten");
                 />
                 <h2>
                   {hasVita ? (
-                    <a href={`/therapeuten/${slug}`}>{profileName}</a>
+                    <a href={`/therapeuten/${data.slug}`}>{profileName}</a>
                   ) : (
                     profileName
                   )}
