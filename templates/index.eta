@@ -1,0 +1,55 @@
+<% layout("./page.eta", { siteTitle: it.siteTitle, navigation: it.navigation }) %>
+<link rel="stylesheet" href="/vendor/swiper.min.css" />
+
+<div class="swiper">
+  <div class="swiper-wrapper">
+    <% for (const image of it.galleryImages) { %>
+    <div class="swiper-slide">
+      <img src="<%= image.src %>" alt="<%= image.alt %>" loading="lazy" />
+    </div>
+    <% } %>
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+<main class="stack welcome-section">
+  <article class="with-sidebar content-width">
+    <div class="roundPicture">
+      <img src="/images/sonja_startseite.jpeg" width="250" height="250" alt="Sonja" class="center" />
+    </div>
+    <div class="stack-s">
+      <p>
+        Liebe Kinder und Jugendliche,<br />
+        sehr geehrte Eltern,
+      </p>
+      <p>
+        herzlich willkommen in unserer psychotherapeutischen Praxis für Kinder
+        und Jugendliche. Wir freuen uns sehr euch/Sie bei uns in Meerbusch
+        Büderich willkommen zu heißen. Unser Team besteht aus staatlich
+        approbierten Kinder- und Jugendlichenpsychotherapeut:innen für
+        Verhaltenstherapie. Wir bieten ein umfassendes Behandlungsangebot an,
+        welches auf neuesten wissenschaftlichen Methoden beruht. Uns als
+        Therapeut:innen ist es sehr wichtig, dass ihr euch und Sie sich bei
+        uns wohlfühlen. Zugleich stellen wir höchste fachliche Ansprüche an
+        unsere Arbeit.
+      </p>
+      <p>Wir freuen uns dich/Sie kennen zu lernen.</p>
+      <p>Dr. Sonja Könnecke und Kolleg:innen</p>
+    </div>
+  </article>
+</main>
+
+<script src="/vendor/swiper.min.js"></script>
+<script>
+  new Swiper(".swiper", {
+    autoplay: {
+      delay: 3000,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    speed: 1000,
+    loop: true,
+  });
+</script>

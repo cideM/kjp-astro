@@ -1,0 +1,85 @@
+<% layout("./page.eta", { siteTitle: it.siteTitle, navigation: it.navigation }) %>
+<main class="content-width stack-l">
+  <div class="switcher">
+    <article class="stack-s">
+      <h1>Vereinbarung von Erstgesprächen</h1>
+      <p>
+        Um ein persönliches Erstgespräch zu vereinbaren, können Sie sich oder
+        kannst du dich gerne an unsere Praxismanagerin <b>Carena Schüllner</b>
+        wenden.
+      </p>
+      <div class="roundPicture align-self:center">
+        <img src="/images/schuellner_cropped.jpg" width="300" height="300" alt="Praxismanagerin" />
+      </div>
+      <address id="contact" class="stack-xxs">
+        <a href="tel:015174369929">01517 / 4369929</a>
+        <a href="mailto:info@kjp-meerbusch.de">info@kjp-meerbusch.de</a>
+      </address>
+      <p>
+        Bitte entnehmen Sie die aktuellen telefonischen Sprechzeiten immer
+        unserer Mailboxansage.
+      </p>
+    </article>
+    <article class="stack-s">
+      <h1>Anreise</h1>
+      <h2>Mit dem Auto</h2>
+      <p>
+        Psychotherapeutische Praxis für Kinder und Jugendliche<br />
+        Moerser Straße 100b 40667 Meerbusch
+      </p>
+      <p>Kostenlose Parkplätze sind direkt an der Praxis vorhanden.</p>
+      <h2>Mit öffentlichen Verkehrsmitteln</h2>
+      <p>Mit der U74 und U76 – Haltestelle Forsthaus</p>
+      <p>Mit dem Bus 829 und 830 – Haltestelle Blumenstraße</p>
+    </article>
+  </div>
+  <div class="stack">
+    <h1>Persönliche Kontaktdaten unserer Therapeuten</h1>
+    <% for (const therapeut of it.therapeuten) { %>
+    <section class="stack-xxs">
+      <h3><%= therapeut.displayName %></h3>
+      <address class="stack-xxs">
+        <a href="tel:<%= therapeut.phone.replace(/\s|\//g, '') %>"><%= therapeut.phone %></a>
+        <a href="mailto:<%= therapeut.email %>"><%= therapeut.email %></a>
+      </address>
+    </section>
+    <% } %>
+  </div>
+  <div class="maps-container">
+    <iframe
+      src="https://www.google.com/maps/embed/v1/place?q=kjp%20meerbusch&key=<%= it.googleMapsApiKey %>"
+      height="400"
+      allowfullscreen
+    ></iframe>
+    <button class="consent-btn maps-overlay">
+      <img src="/images/praxis_maps.png" alt="Google Maps Link zur Praxis" height="400" />
+      <div class="overlay">
+        <h2>
+          <svg width="96" height="96" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.3 132.3">
+            <path fill="#1a73e8" d="M60.2 2.2C55.8.8 51 0 46.1 0 32 0 19.3 6.4 10.8 16.5l21.8 18.3L60.2 2.2z"></path>
+            <path fill="#ea4335" d="M10.8 16.5C4.1 24.5 0 34.9 0 46.1c0 8.7 1.7 15.7 4.6 22l28-33.3-21.8-18.3z"></path>
+            <path fill="#4285f4" d="M46.2 28.5c9.8 0 17.7 7.9 17.7 17.7 0 4.3-1.6 8.3-4.2 11.4 0 0 13.9-16.6 27.5-32.7-5.6-10.8-15.3-19-27-22.7L32.6 34.8c3.3-3.8 8.1-6.3 13.6-6.3"></path>
+            <path fill="#fbbc04" d="M46.2 63.8c-9.8 0-17.7-7.9-17.7-17.7 0-4.3 1.5-8.3 4.1-11.3l-28 33.3c4.8 10.6 12.8 19.2 21 29.9l34.1-40.5c-3.3 3.9-8.1 6.3-13.5 6.3"></path>
+            <path fill="#34a853" d="M59.1 109.2c15.4-24.1 33.3-35 33.3-63 0-7.7-1.9-14.9-5.2-21.3L25.6 98c2.6 3.4 5.3 7.3 7.9 11.3 9.4 14.5 6.8 23.1 12.8 23.1s3.4-8.7 12.8-23.2"></path>
+          </svg>
+          Google Maps Karte anzeigen
+        </h2>
+        <p>
+          Hierbei werden Daten an Google übertragen und dort gespeichert, unter
+          anderem beinhaltet dies die IP-Adresse, aber auch die Startadresse bei
+          Verwendung der Routenplaner-Funktion.
+        </p>
+      </div>
+    </button>
+  </div>
+</main>
+
+<script>
+  const btn = document.querySelector("button.consent-btn");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      document.querySelector(".maps-container").classList.add("consent");
+      btn.remove();
+    });
+  }
+</script>
