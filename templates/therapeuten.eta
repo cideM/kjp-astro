@@ -17,6 +17,7 @@
         <span><%= therapeut.displayName %></span>
         <% } %>
       </h2>
+      <p class="therapeut-subtitle"><%= therapeut.subtitle %></p>
     </article>
     <% } %>
   </div>

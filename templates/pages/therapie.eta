@@ -1,0 +1,71 @@
+<% layout("../page.eta", { siteTitle: "KJP Meerbusch | Therapie", navigation: it.navigation }) %>
+<main class="content-width stack">
+  <h1>Therapie</h1>
+  <p>
+    Unser Behandlungsangebot richtet sich an Kinder, Jugendliche und junge
+    Erwachsene bis 21 Jahre. Sollte nach einer ausführlichen Diagnostik der
+    Wunsch und die Indikation für eine Psychotherapie bestehen, wird zusammen
+    mit der/ dem behandelnden Therapeut:in ein individueller Behandlungsplan
+    erstellt.
+  </p>
+  <p>
+    Wir behandeln alle gängigen psychotherapeutischen Krankheitsbilder. Unsere
+    Therapien werden von approbierten Psychotherapeut:innen durchgeführt.
+  </p>
+
+  <details class="collapsible">
+    <summary>Verhaltenstherapie</summary>
+    <p>
+      Mit Hilfe der Verhaltenstherapie unterstützen wir Kinder und Jugendliche
+      dabei, belastende Gedanken, Gefühle und Verhaltensmuster zu erkennen und
+      neue, hilfreiche Strategien im Alltag zu entwickeln. Die Therapie ist
+      praxisnah, individuell auf das Kind abgestimmt und fördert
+      Selbstwirksamkeit, Problemlösekompetenzen und emotionale Stabilität.
+    </p>
+  </details>
+
+  <details class="collapsible">
+    <summary>Online-Therapie</summary>
+    <p>
+      Unser Online-Therapieangebot ergänzt die Behandlung vor Ort und
+      ermöglicht eine flexible psychotherapeutische Versorgung.
+    </p>
+  </details>
+
+  <details class="collapsible">
+    <summary>Traumatherapie (EMDR)</summary>
+    <p>
+      Durch speziell ausgebildete Traumatherapeut:innen bieten wir eine
+      altersgerechte Therapie für Kinder und Jugendliche an, um
+      belastende/traumatische Erlebnisse zu verarbeiten und die emotionale
+      Stabilität sowie das Sicherheitsgefühl nachhaltig zu stärken.
+    </p>
+  </details>
+
+  <p>
+    Einzel- oder Gruppentherapie: Abhängig von den individuellen
+    Bedürfnissen unserer Patient:innen findet die Therapie als Einzel- oder
+    Gruppentherapie statt. Die Gruppentherapie kann auch in Ergänzung zur
+    Einzeltherapie erfolgen.
+  </p>
+
+  <details class="collapsible">
+    <summary>Gruppentherapie</summary>
+    <p>
+      Unsere Gruppentherapien für Kinder und Jugendliche bieten die Möglichkeit
+      einen Austausch und gegenseitige Unterstützung in einem geschützten
+      therapeutischen Rahmen zu erfahren. Neue Strategien können gemeinsam
+      erprobt werden.
+    </p>
+    <p>Unter anderem bieten wir folgende Gruppen in unserer Praxis an:</p>
+    <ul>
+      <li>ADHS-Gruppe</li>
+      <li>Gruppe für soziales Kompetenztraining</li>
+      <li>Selbstwert-Gruppe</li>
+      <li>Gruppe Emotionsregulation</li>
+      <li>Gruppe Depression/Angst</li>
+      <li>Entspannungs-Gruppe</li>
+    </ul>
+  </details>
+
+</main>
