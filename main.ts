@@ -11,10 +11,10 @@ const googleMapsApiKey = process.env["PUBLIC_GOOGLE_MAPS_API_KEY"] || "";
 
 // Navigation links
 const navigation = [
-  { text: "Behandlungsangebot", href: "/behandlungsangebot.html" },
+  { text: "Therapie", href: "/therapie.html" },
+  { text: "Diagnostik", href: "/diagnostik.html" },
   { text: "Praxis", href: "/praxis.html" },
   { text: "Therapeuten", href: "/therapeuten.html" },
-  { text: "Leistungen", href: "/leistungen.html" },
   { text: "Kosten", href: "/kosten.html" },
   { text: "Kontakt & Anfahrt", href: "/kontakt.html" },
   { text: "Karriere", href: "/karriere.html" },
@@ -25,6 +25,7 @@ const therapeuten = [
   {
     slug: "koennecke",
     displayName: "Dr. Sonja Könnecke",
+    subtitle: "Kinder- und Jugendlichenpsychotherapeutin (VT)",
     photo: "/images/therapeuten/koennecke_klein.jpg",
     photoAlt: "Foto von Dr. Sonja Könnecke",
     email: "praxis@kjp-meerbusch.de",
@@ -34,6 +35,7 @@ const therapeuten = [
   {
     slug: "stepputt",
     displayName: "Katja Stepputt",
+    subtitle: "Kinder- und Jugendlichenpsychotherapeutin (VT)",
     photo: "/images/therapeuten/stepputt.jpeg",
     photoAlt: "Foto von Katja Stepputt",
     email: "stepputt@kjp-meerbusch.de",
@@ -43,6 +45,7 @@ const therapeuten = [
   {
     slug: "jax",
     displayName: "Sarah Jax",
+    subtitle: "Kinder- und Jugendlichenpsychotherapeutin (VT)",
     photo: "/images/therapeuten/jax.jpg",
     photoAlt: "Platzhalter",
     email: "jax@kjp-meerbusch.de",
@@ -52,6 +55,7 @@ const therapeuten = [
   {
     slug: "brueggemann",
     displayName: "Madeleine Brüggemann",
+    subtitle: "Kinder- und Jugendlichenpsychotherapeutin (VT)",
     photo: "/images/therapeuten/brueggemann.jpg",
     photoAlt: "Foto von Madeleine Brüggemann",
     email: "brueggemann@kjp-meerbusch.de",
@@ -61,6 +65,7 @@ const therapeuten = [
   {
     slug: "meier",
     displayName: "Dorian Meier",
+    subtitle: "Kinder- und Jugendlichenpsychotherapeut (VT)",
     photo: "/images/therapeuten/meier.jpg",
     photoAlt: "Foto von Dorian Meier",
     email: "meier@kjp-meerbusch.de",
@@ -70,6 +75,7 @@ const therapeuten = [
   {
     slug: "pletsch",
     displayName: "Vivien Pletsch",
+    subtitle: "Kinder- und Jugendlichenpsychotherapeutin (VT)",
     photo: "/images/therapeuten/pletsch.jpeg",
     photoAlt: "Foto von Vivien Pletsch",
     email: "pletsch@kjp-meerbusch.de",
@@ -77,12 +83,34 @@ const therapeuten = [
     hasBio: false,
   },
   {
-    slug: "peeters",
-    displayName: "Saskia Peeters",
+    slug: "maiwald",
+    displayName: "Saskia Maiwald",
+    subtitle: "Kinder- und Jugendlichenpsychotherapeutin (VT)",
     photo: "/images/therapeuten/foto_therapeut_leer.jpg",
     photoAlt: "Platzhalter",
     email: "maiwald@kjp-meerbusch.de",
     phone: "0160 / 4142522",
+    hasBio: false,
+  },
+  {
+    slug: "sandfuchs",
+    displayName: "Sabrina Sandfuchs",
+    subtitle: "Kinder- und Jugendlichenpsychotherapeutin (VT)",
+    photo: "/images/therapeuten/foto_therapeut_leer.jpg",
+    photoAlt: "Platzhalter",
+    email: "sandfuchs@kjp-meerbusch.de",
+    phone: "0151 / 58331002",
+    hasBio: false,
+  },
+  {
+    slug: "costantini",
+    displayName: "Selena Costantini",
+    subtitle: "Kinder- und Jugendlichenpsychotherapeutin (i. A.)",
+    photo: "/images/therapeuten/foto_therapeut_leer.jpg",
+    photoAlt: "Platzhalter",
+    hideFromContact: true,
+    email: "costantini@kjp-meerbusch.de",
+    phone: "",
     hasBio: false,
   },
 ];
@@ -151,11 +179,11 @@ writeFileSync(
 
 // Render self-contained content pages
 const contentPages = [
-  "behandlungsangebot",
+  "therapie",
+  "diagnostik",
   "kosten",
   "karriere",
   "impressum",
-  "leistungen",
 ];
 
 for (const page of contentPages) {

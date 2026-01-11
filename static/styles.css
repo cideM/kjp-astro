@@ -325,6 +325,7 @@ footer {
 
 /* Content width constraint */
 .content-width {
+  width: 100%;
   max-inline-size: min(100%, var(--max-page-width));
   margin-inline: auto;
 }
@@ -506,6 +507,11 @@ footer {
   max-height: 400px;
 }
 
+.therapeut-subtitle {
+  color: var(--color-brand);
+  padding-inline: var(--space-scale-xs);
+}
+
 /* ==========================================================================
    Component: Kontakt
    ========================================================================== */
@@ -623,4 +629,46 @@ button.consent-btn img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* ==========================================================================
+   Component: Collapsible (details/summary)
+   ========================================================================== */
+
+.collapsible {
+  border: 1px solid var(--color-border-secondary);
+  border-radius: 4px;
+  padding: var(--space-scale-s);
+}
+
+.collapsible summary {
+  color: var(--color-brand);
+  cursor: pointer;
+  font-weight: 600;
+  user-select: none;
+  list-style: none;
+}
+
+.collapsible summary::-webkit-details-marker {
+  display: none;
+}
+
+.collapsible summary::before {
+  content: "▶";
+  display: inline-block;
+  margin-inline-end: var(--space-scale-xs);
+  transition: transform 0.2s;
+}
+
+.collapsible[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.collapsible summary:hover {
+  color: var(--color-brand);
+}
+
+.collapsible summary:focus {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
 }

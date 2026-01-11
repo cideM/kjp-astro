@@ -35,7 +35,7 @@
   </div>
   <div class="stack">
     <h1>Persönliche Kontaktdaten unserer Therapeuten</h1>
-    <% for (const therapeut of it.therapeuten) { %>
+    <% for (const therapeut of it.therapeuten.filter(t => !t.hideFromContact)) { %>
     <section class="stack-xxs">
       <h3><%= therapeut.displayName %></h3>
       <address class="stack-xxs">
