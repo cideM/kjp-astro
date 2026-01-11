@@ -5,6 +5,7 @@ import fse from "fs-extra";
 import * as contentful from "contentful";
 import { type EntryFieldTypes } from "contentful";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import { BLOCKS } from "@contentful/rich-text-types";
 
 interface Therapeut {
   fields: {
@@ -17,6 +18,24 @@ interface Therapeut {
     bio: EntryFieldTypes.RichText;
   };
   contentTypeId: "therapeut";
+}
+
+interface Collapsible {
+  fields: {
+    titel: EntryFieldTypes.Symbol;
+    inhalt: EntryFieldTypes.RichText;
+  };
+  contentTypeId: "collapsible";
+}
+
+interface Seite {
+  fields: {
+    titel: EntryFieldTypes.Symbol;
+    navigationsName: EntryFieldTypes.Symbol;
+    slug: EntryFieldTypes.Symbol;
+    inhalt: EntryFieldTypes.RichText;
+  };
+  contentTypeId: "seite";
 }
 
 const eta = new Eta({ views: path.join(import.meta.dirname!, "templates") });
@@ -50,7 +69,39 @@ const galleryImages = [
   { src: "/images/gallery/gallery8.jpg", alt: "Bild aus der Praxis" },
 ];
 
+// Helper to render rich text with embedded Collapsible support
+function renderRichText(document: Parameters<typeof documentToHtmlString>[0]) {
+  return documentToHtmlString(document, {
+    renderNode: {
+      [BLOCKS.EMBEDDED_ENTRY]: (node) => {
+        const entry = node.data.target;
+        if (entry.sys.contentType?.sys.id === "collapsible") {
+          const titel = entry.fields.titel;
+          const inhalt = entry.fields.inhalt;
+          const innerHtml = inhalt ? documentToHtmlString(inhalt) : "";
+          return `<details class="collapsible"><summary>${titel}</summary><div class="stack-s">${innerHtml}</div></details>`;
+        }
+        return "";
+      },
+    },
+  });
+}
+
 async function build() {
+  // Fetch Seite (pages) from Contentful
+  console.log("Fetching pages from Contentful...");
+  const getSeitenResponse = await client.getEntries<Seite, "de">({
+    content_type: "seite",
+  });
+
+  // Find Therapie page
+  const therapiePage = getSeitenResponse.items.find(
+    (item) => item.fields.titel === "Therapie"
+  );
+  if (!therapiePage) {
+    throw new Error('Page "Therapie" not found in Contentful');
+  }
+
   console.log("Fetching therapeuten from Contentful...");
   const getTherapeutenResponse = await client.getEntries<Therapeut, "de">({
     content_type: "therapeut",
@@ -128,13 +179,23 @@ async function build() {
     })
   );
 
-  const contentPages = [
-    "therapie",
-    "diagnostik",
-    "kosten",
-    "karriere",
-    "impressum",
-  ];
+  // Build Therapie page from Contentful
+  console.log("Building therapie.html...");
+  const therapieHtml = therapiePage.fields.inhalt
+    ? renderRichText(therapiePage.fields.inhalt)
+    : "";
+  writeFileSync(
+    "./public/therapie.html",
+    eta.render("./pages/seite.eta", {
+      navigation,
+      siteTitle: `KJP Meerbusch | ${therapiePage.fields.titel}`,
+      titel: therapiePage.fields.titel,
+      inhalt: therapieHtml,
+    })
+  );
+
+  // Build static content pages
+  const contentPages = ["diagnostik", "kosten", "karriere", "impressum"];
 
   for (const page of contentPages) {
     console.log(`Building ${page}.html...`);

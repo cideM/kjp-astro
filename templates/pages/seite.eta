@@ -1,0 +1,5 @@
+<% layout("../page.eta", { siteTitle: it.siteTitle, navigation: it.navigation }) %>
+<main class="content-width stack">
+  <h1><%= it.titel %></h1>
+  <%~ it.inhalt %>
+</main>

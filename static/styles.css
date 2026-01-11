@@ -664,6 +664,10 @@ button.consent-btn img {
   transform: rotate(90deg);
 }
 
+.collapsible[open] > div {
+  margin-block-start: var(--space-scale-xxs);
+}
+
 .collapsible summary:hover {
   color: var(--color-brand);
 }
