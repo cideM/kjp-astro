@@ -1,0 +1,89 @@
+<% layout("../page.eta", { siteTitle: "KJP Meerbusch | Impressum & Datenschutz", navigation: it.navigation }) %>
+<main class="content-width">
+  <h1>Impressum</h1>
+
+  <h3>Psychotherapeutische Praxis für Kinder und Jugendliche</h3>
+
+  <p>Praxisinhaberin:</p>
+  <p>Dr. rer. medic. Dipl. Päd. Sonja Könnecke</p>
+  <p>Telefon: 0 21 32/5 81 09 10</p>
+  <p>E-Mail: <a href="mailto:praxis@kjp-meerbusch.de">praxis@kjp-meerbusch.de</a></p>
+  <p>Approbation: November 2015</p>
+
+  <h2>Aufsichtsbehörde</h2>
+
+  <h3>Psychotherapeutenkammer NRW</h3>
+  <p>Willstätterstr. 10 40549<br>
+  Düsseldorf Tel.: 0211/5 22 84 70<br>
+  Fax: 0211/52 28 47 15<br>
+  E-Mail: <a href="mailto:info@ptk-nrw.de">info@ptk-nrw.de</a><br>
+  Internet: <a href="https://www.ptk-nrw.de">www.ptk-nrw.de</a></p>
+
+  <h3>Kassenärztliche Vereinigung Nordrhein</h3>
+  <p>Tersteegenstraße 9 40474 Düsseldorf<br>
+  Tel.: 0211/59 700<br>
+  Fax: 0211/59 70 82 87<br>
+  E-Mail: <a href="mailto:kvno.hauptstelle@kvno.de">kvno.hauptstelle@kvno.de</a><br>
+  Internet: <a href="https://www.kvno.de">www.kvno.de</a></p>
+
+  <h3>Arztregistereintrag</h3>
+  <p>Arztnummer: 3456799<br>
+  Gesetzliche Berufsbezeichnung: Kinder- und Jugendlichenpsychotherapeutin<br>
+  Staat der Verleihung der Berufsbezeichnung: Bundesrepublik Deutschland</p>
+
+  <h3>Berufsrechtliche Regelung</h3>
+  <p>Berufsordnung für Psychotherapeuten</p>
+
+  <h2>Disclaimer – Haftungsausschluss</h2>
+
+  <h3>Haftung für Inhalte</h3>
+  <p>Obwohl wir uns um Aktualität, Vollständigkeit und Richtigkeit der Inhalte unserer Seiten bemühen, können wir hierfür keine Garantie übernehmen. Nach § 7 Absatz 1 TDG sind wir als Diensteanbieter für eigene Inhalte auf unseren Seiten nach den allgemeinen Gesetzen verantwortlich. Eine Verpflichtung zur Überwachung übermittelter oder gespeicherter fremder Informationen besteht jedoch nicht (§§ 8-10 TDG). Sobald uns Rechtsverstöße bekannt werden, werden wir die entsprechenden Inhalte umgehend entfernen. Eine dahingehende Haftung wird jedoch erst ab dem Zeitpunkt der Kenntnis konkreter Rechtsverletzungen übernommen.</p>
+
+  <h3>Haftung für Links</h3>
+  <p>Unsere Seiten enthalten Links auf externe Webseiten Dritter. Auf die Inhalte dieser verlinkten Webseiten haben wir keinen Einfluss. Für die Richtigkeit der Inhalte ist immer der jeweilige Anbieter oder Betreiber verantwortlich, weshalb wir diesbezüglich keinerlei Gewähr übernehmen. Die fremden Webseiten haben wir zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Zum Zeitpunkt der Verlinkung waren keinerlei Rechtsverletzungen erkennbar. Eine ständige Überprüfung sämtlicher Inhalte der von uns verlinkten Seiten ohne tatsächliche Anhaltspunkte für einen Rechtsverstoß können wir nicht leisten. Falls uns Rechtsverletzungen bekannt werden, werden wir die entsprechenden Links sofort entfernen.</p>
+
+  <h3>Urheberrecht</h3>
+  <p>Die durch den Betreiber dieser Seite erstellten Inhalte und Werke auf diesen Webseiten unterliegen dem deutschen Urheberrecht. Sämtliche Beiträge Dritter sind als solche gekennzeichnet. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Kopien von diesen Seiten sind nur für den privaten Bereich gestattet, nicht jedoch für kommerzielle Zwecke.</p>
+
+  <h3>Datenschutz</h3>
+  <p>Für die Sicherheit der Datenübertragung im Internet können wir keine Gewähr übernehmen, insbesondere besteht bei der Übertragung von Daten per E-Mail die Gefahr des Zugriffs durch Dritte. Im Falle der Erhebung personenbezogener Daten auf unseren Seiten erfolgt die Preisgabe dieser Daten seitens des Nutzers stets auf freiwilliger Basis. Die Inanspruchnahme und Bezahlung aller angebotenen Dienste ist auch ohne Angabe solcher Daten bzw. unter Angabe anonymisierter Daten oder eines Pseudonyms gestattet, soweit dies technisch möglich und zumutbar ist. Einer Nutzung der im Impressum veröffentlichten Kontaktdaten durch Dritte zu Werbezwecken wird hiermit ausdrücklich widersprochen. Der Betreiber behält sich für den Fall unverlangt zugesandter Werbe- oder Informationsmaterialien ausdrücklich rechtliche Schritte vor.</p>
+
+  <h3>Rechtswirksamkeit dieses Haftungsausschlusses</h3>
+  <p>Sollten einzelne Regelungen oder Formulierungen dieses Haftungsausschlusses unwirksam sein oder werden, bleiben die übrigen Regelungen in ihrem Inhalt und ihrer Gültigkeit hiervon unberührt.</p>
+
+  <h2>Datenschutz</h2>
+
+  <h3>PATIENTENINFORMATION ZUM DATENSCHUTZ</h3>
+  <p>Liebe Patienten, liebe Eltern,</p>
+  <p>der Schutz Ihrer personenbezogenen Daten ist uns wichtig. Nach der EU-Datenschutz-Grundverordnung (DSGVO) sind wir verpflichtet, Sie darüber zu informieren, zu welchem Zweck unsere Praxis Daten erhebt, speichert oder weiterleitet. Der Information können Sie auch entnehmen, welche Rechte Sie in puncto Datenschutz haben.</p>
+
+  <h3>VERANTWORTLICHKEIT FÜR DIE DATENVERARBEITUNG</h3>
+  <p>Verantwortlich für die Datenverarbeitung ist:</p>
+  <p>Praxisname: Psychotherapeutische Praxis für Kinder und Jugendliche<br>
+  Adresse: Moerser Straße 100 b, 40667 Meerbusch<br>
+  Kontaktdaten: <a href="mailto:praxis@kjp-meerbusch.de">praxis@kjp-meerbusch.de</a> Tel.: 02132 – 5 810 910</p>
+
+  <h3>ZWECK DER DATENVERARBEITUNG</h3>
+  <p>Die Datenverarbeitung erfolgt aufgrund gesetzlicher Vorgaben, um den Behandlungsvertrag zwischen Ihnen und Ihrem Arzt und die damit verbundenen Pflichten zu erfüllen.</p>
+  <p>Hierzu verarbeiten wir Ihre personenbezogenen Daten, insbesondere Ihre Gesundheitsdaten. Dazu zählen Anamnesen, Diagnosen, Therapievorschläge und Befunde, die wir oder andere Psychotherapeuten/Ärzte erheben. Zu diesen Zwecken können uns auch andere Psychotherapeuten oder Ärzte, bei denen Sie in Behandlung sind, Daten zur Verfügung stellen (z.B. in Arztbriefen).</p>
+  <p>Die Erhebung von Gesundheitsdaten ist Voraussetzung für Ihre Behandlung. Werden die notwendigen Informationen nicht bereitgestellt, kann eine sorgfältige Behandlung nicht erfolgen.</p>
+
+  <h3>EMPFÄNGER IHRER DATEN</h3>
+  <p>Wir übermitteln Ihre personenbezogenen Daten nur dann an Dritte, wenn dies gesetzlich erlaubt ist oder Sie eingewilligt haben.</p>
+  <p>Empfänger Ihrer personenbezogenen Daten können vor allem andere Psychotherapeuten/Ärzte, Kassenärztliche Vereinigungen, Krankenkassen, der Medizinische Dienst der Krankenversicherung, Ärztekammern und privatärztliche Verrechnungsstellen sein.</p>
+  <p>Die Übermittlung erfolgt überwiegend zum Zwecke der Abrechnung der bei Ihnen erbrachten Leistungen, zur Klärung von medizinischen und sich aus Ihrem Versicherungsverhältnis ergebenden Fragen. Im Einzelfall erfolgt die Übermittlung von Daten an weitere berechtigte Empfänger.</p>
+
+  <h3>SPEICHERUNG IHRER DATEN</h3>
+  <p>Wir bewahren Ihre personenbezogenen Daten nur solange auf, wie dies für die Durchführung der Behandlung erforderlich ist.</p>
+  <p>Aufgrund rechtlicher Vorgaben sind wir dazu verpflichtet, diese Daten mindestens 10 Jahre nach Abschluss der Behandlung aufzubewahren.</p>
+
+  <h3>IHRE RECHTE</h3>
+  <p>Sie haben das Recht, über die Sie betreffenden personenbezogenen Daten Auskunft zu erhalten. Auch können Sie die Berichtigung unrichtiger Daten verlangen.</p>
+  <p>Darüber hinaus steht Ihnen unter bestimmten Voraussetzungen das Recht auf Löschung von Daten, das Recht auf Einschränkung der Datenverarbeitung sowie das Recht auf Datenübertragbarkeit zu.</p>
+  <p>Die Verarbeitung Ihrer Daten erfolgt auf Basis von gesetzlichen Regelungen. Nur in Ausnahmefällen benötigen wir Ihr Einverständnis. In diesen Fällen haben Sie das Recht, die Einwilligung für die zukünftige Verarbeitung zu widerrufen.</p>
+  <p>Sie haben ferner das Recht, sich bei der zuständigen Aufsichtsbehörde für den Datenschutz zu beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten nicht rechtmäßig erfolgt.</p>
+
+  <h3>RECHTLICHE GRUNDLAGEN</h3>
+  <p>Rechtsgrundlage für die Verarbeitung Ihrer Daten ist Artikel 9 Absatz 2 lit. h) DSGVO in Verbindung mit Paragraf 22 Absatz 1 Nr. 1 lit. b) Bundesdatenschutzgesetz. Sollten Sie Fragen haben, können Sie sich gern an uns wenden.</p>
+  <p>Ihre Dr. Sonja Könnecke</p>
+</main>

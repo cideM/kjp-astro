@@ -22,11 +22,10 @@
             jq
             alejandra
 
-            # You can leverage Typescript even in a pure Javascript project.
-            pkgs.nodePackages.typescript-language-server
-            pkgs.nodePackages."@astrojs/language-server"
-            pkgs.nodePackages.vscode-langservers-extracted
-            pkgs.nodejs
+            miniserve
+            nodePackages.typescript-language-server
+            nodePackages.vscode-langservers-extracted
+            nodejs
           ];
         };
       }

@@ -1,0 +1,626 @@
+/* ==========================================================================
+   CSS Scale System
+   ========================================================================== */
+
+:root {
+  /* Layout */
+  --measure: 45rem;
+  --max-page-width: 75rem; /* ~1200px */
+
+  /* Type Scale (ratio: 1.125 - major second) */
+  --type-scale-ratio: 1.125;
+  --type-scale-0: 1.0625rem; /* ~17px, matches lions-club-achern */
+  --type-scale--1: calc(var(--type-scale-0) / var(--type-scale-ratio));
+  --type-scale-1: calc(var(--type-scale-0) * var(--type-scale-ratio));
+  --type-scale-2: calc(var(--type-scale-1) * var(--type-scale-ratio));
+  --type-scale-3: calc(var(--type-scale-2) * var(--type-scale-ratio));
+  --type-scale-4: calc(var(--type-scale-3) * var(--type-scale-ratio));
+  --type-scale-5: calc(var(--type-scale-4) * var(--type-scale-ratio));
+
+  /* Line Heights (tighter for larger text) */
+  --line-height--1: 1.5;
+  --line-height-0: 1.5;
+  --line-height-1: 1.4;
+  --line-height-2: 1.3;
+  --line-height-3: 1.2;
+  --line-height-4: 1.2;
+  --line-height-5: 1.1;
+
+  /* Space Scale (derived from type × line-height) */
+  --space-scale-ratio: var(--line-height-0);
+  --space-scale-base: calc(var(--type-scale-0) * var(--line-height-0));
+  --space-scale-s: calc(var(--space-scale-base) / var(--space-scale-ratio));
+  --space-scale-xs: calc(var(--space-scale-s) / var(--space-scale-ratio));
+  --space-scale-xxs: calc(var(--space-scale-xs) / var(--space-scale-ratio));
+  --space-scale-m: calc(var(--space-scale-base) * var(--space-scale-ratio));
+  --space-scale-l: calc(var(--space-scale-m) * var(--space-scale-ratio));
+  --space-scale-xl: calc(var(--space-scale-l) * var(--space-scale-ratio));
+
+  /* Colors */
+  --color-background: rgb(255, 255, 255);
+  --color-border-primary: hsla(0, 0%, 0%, 0.3);
+  --color-border-secondary: rgb(238, 238, 238);
+  --color-brand: rgb(0, 103, 127);
+  --color-text-primary: hsla(0, 0%, 0%, 0.8);
+  --color-text-on-brand: rgb(255, 255, 255);
+
+  /* Font Families */
+  --font-family-body:
+    -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Arial",
+    sans-serif;
+}
+
+/* ==========================================================================
+   Reset & Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  color: var(--color-text-primary);
+  background: var(--color-background);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: var(--type-scale-0);
+  font-family: var(--font-family-body);
+  line-height: var(--line-height-0);
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+h1 {
+  font-size: var(--type-scale-5);
+  line-height: var(--line-height-5);
+}
+
+h2 {
+  font-size: var(--type-scale-3);
+  line-height: var(--line-height-3);
+}
+
+h3 {
+  font-size: var(--type-scale-2);
+  line-height: var(--line-height-2);
+}
+
+address {
+  font-style: normal;
+}
+
+a,
+a:visited {
+  text-decoration: underline;
+  color: inherit;
+}
+
+/* ==========================================================================
+   Media
+   ========================================================================== */
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   Buttons & Forms
+   ========================================================================== */
+
+button {
+  font-size: inherit;
+  font-family: inherit;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Layout Components
+   ========================================================================== */
+
+/* Main content area */
+main {
+  flex-grow: 1;
+  padding-block: var(--space-scale-l);
+  padding-inline: var(--space-scale-s);
+}
+
+/* Header */
+header {
+  max-height: 80px;
+  position: sticky;
+  top: 0;
+  background: var(--color-background);
+  z-index: 100;
+  border-bottom: 1px solid var(--color-border-secondary);
+  width: 100%;
+}
+
+header a,
+header a:visited {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.logoAndButton {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  padding-block: var(--space-scale-xs);
+}
+
+.logoAndButton img {
+  margin-inline-start: var(--space-scale-s);
+}
+
+.logoAndButton button {
+  margin-inline-end: var(--space-scale-s);
+}
+
+header nav {
+  background: var(--color-background);
+}
+
+header button {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  gap: var(--space-scale-xs);
+  background: none;
+}
+
+header menu {
+  list-style: none;
+  padding: var(--space-scale-s);
+  margin: 0;
+}
+
+.logo {
+  max-width: 150px;
+  max-height: 80px;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 401px) {
+  .logo {
+    max-width: 200px;
+  }
+}
+
+@media (min-width: 1201px) {
+  .logo {
+    max-width: 200px;
+  }
+
+  header button[aria-haspopup="menu"] {
+    display: none;
+  }
+
+  header nav menu {
+    display: flex;
+    gap: var(--space-scale-m);
+  }
+
+  header nav li {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 1901px) {
+  header {
+    padding-inline: 25vh;
+  }
+}
+
+@media (max-width: 300px) {
+  .logo {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  header nav li {
+    width: 100%;
+    padding-block: var(--space-scale-xs);
+    border-bottom: 1px solid var(--color-border-secondary);
+  }
+
+  header nav li:last-child {
+    border-bottom: none;
+  }
+
+  header nav[aria-expanded="true"] {
+    width: 100%;
+    order: 3;
+  }
+
+  header nav:not([aria-expanded="true"]) {
+    display: none;
+  }
+}
+
+footer {
+  background: var(--color-brand);
+  color: var(--color-text-on-brand);
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-scale-base);
+}
+
+.switcher > * {
+  flex-grow: 1;
+  flex-basis: calc(( 30rem - 100%) * 999);
+}
+
+.switcher > :nth-last-child(n+ 5),
+.switcher > :nth-last-child(n+ 5) ~ * {
+  flex-basis: 100%;
+}
+
+:is(.article)
+  > :not(:is(h1, h2, h3, h4, h5, h6))
+  + :is(h1, h2, h3, h4, h5, h6) {
+  margin-block-start: calc(var(--space-scale-s)) !important;
+}
+
+.large {
+  font-size: var(--type-scale-2);
+  line-height: var(--line-height-2);
+}
+
+.bold {
+  font-weight: 500;
+}
+
+.box {
+  padding: var(--space-scale-base);
+  color: var(--color-text-on-brand);
+  background-color: var(--color-brand);
+}
+
+.box * {
+  color: inherit;
+}
+
+/* Content width constraint */
+.content-width {
+  max-inline-size: min(100%, var(--max-page-width));
+  margin-inline: auto;
+}
+
+.center {
+  box-sizing: content-box;
+  margin-inline: auto;
+  max-inline-size: var(--measure);
+}
+
+.with-sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-scale-base);
+}
+
+.with-sidebar > :first-child {
+  flex-grow: 1;
+}
+
+.with-sidebar > :last-child {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-inline-size: 50%;
+}
+
+
+/* Stack (vertical) layouts */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-scale-base);
+}
+
+.stack-xxs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-scale-xxs);
+}
+
+.stack-xs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-scale-xs);
+}
+
+.stack-s {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-scale-s);
+}
+
+.stack-m {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-scale-m);
+}
+
+.stack-l {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-scale-l);
+}
+
+/* Cluster (horizontal) layouts */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-scale-base);
+  align-items: center;
+}
+
+.cluster-xxs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-scale-xxs);
+  align-items: center;
+}
+
+.cluster-s {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-scale-s);
+  align-items: center;
+}
+
+.cluster-m {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-scale-m);
+  align-items: center;
+}
+
+/* Padding utilities */
+.padding-block\:s {
+  padding-block: var(--space-scale-s);
+}
+
+.padding-block\:base {
+  padding-block: var(--space-scale-base);
+}
+
+.padding-block\:m {
+  padding-block: var(--space-scale-m);
+}
+
+.padding-inline\:s {
+  padding-inline: var(--space-scale-s);
+}
+
+.padding-inline\:base {
+  padding-inline: var(--space-scale-base);
+}
+
+/* Margin utilities */
+.margin-block-start\:xl {
+  margin-block-start: var(--space-scale-xl);
+}
+
+/* Alignment */
+.text-align\:center {
+  text-align: center;
+}
+
+.align-self\:center {
+  align-self: center;
+}
+
+.justify-content\:center {
+  justify-content: center;
+}
+
+/* Round picture */
+.roundPicture img {
+  overflow: hidden;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Component: Leistungen Grid
+   ========================================================================== */
+
+.leistungen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: var(--space-scale-m);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 1000px) {
+  .leistungen-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==========================================================================
+   Component: Therapeuten Cards
+   ========================================================================== */
+
+.therapeut-card {
+  border: 1px solid var(--color-border-secondary);
+  display: flex;
+  gap: var(--space-scale-s);
+  padding-block-end: var(--space-scale-s);
+  flex-direction: column;
+  width: 350px;
+  height: fit-content;
+  align-items: center;
+}
+
+.therapeut-card img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  max-width: 350px;
+  max-height: 400px;
+}
+
+/* ==========================================================================
+   Component: Kontakt
+   ========================================================================== */
+
+/* Google Maps Consent */
+.maps-container {
+  width: 100%;
+  flex-basis: 100%;
+}
+
+.maps-container iframe {
+  width: 100%;
+  display: none;
+  border: 0;
+}
+
+.maps-container.consent iframe {
+  display: block;
+}
+
+.maps-container.consent .maps-overlay {
+  display: none;
+}
+
+button.consent-btn {
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+button.consent-btn .overlay {
+  display: flex;
+  font-weight: bold;
+  flex-direction: column;
+  gap: var(--space-scale-m);
+  align-items: center;
+  padding: var(--space-scale-xl) var(--space-scale-s);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--color-text-on-brand);
+  background-color: rgba(50, 50, 50, 0.7);
+}
+
+button.consent-btn .overlay h2 {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-on-brand);
+}
+
+button.consent-btn img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Component: Praxis Gallery
+   ========================================================================== */
+
+.praxis-gallery a {
+  width: fit-content;
+}
+
+.praxis-gallery img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Component: Welcome Section (Index)
+   ========================================================================== */
+
+.welcome-section {
+  background: var(--color-brand);
+  color: var(--color-text-on-brand);
+}
+
+/* ==========================================================================
+   Component: Swiper (Index)
+   ========================================================================== */
+
+.swiper {
+  max-width: 100%;
+  max-height: 550px;
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+@media (min-width: 1000px) {
+  .swiper {
+    max-height: 500px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .swiper {
+    max-height: 650px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .swiper {
+    max-height: 800px;
+  }
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

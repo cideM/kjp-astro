@@ -1,0 +1,15 @@
+<% layout("../page.eta", { siteTitle: "KJP Meerbusch | Leistungen", navigation: it.navigation }) %>
+<main class="content-width text-align:center stack">
+  <h1>Leistungen</h1>
+  <ul class="leistungen-grid margin-block-start:xl">
+    <li class="box bold large">Verhaltenstherapie</li>
+    <li class="box bold large">Systemische Beratung</li>
+    <li class="box bold large">Einzel- und Gruppentherapie</li>
+    <li class="box bold large">Onlinetherapie</li>
+    <li class="box bold large">Elternberatung</li>
+    <li class="box bold large">Traumatherapie (EMDR)</li>
+    <li class="box bold large">Autismus</li>
+    <li class="box bold large">Therapie auf Englisch</li>
+    <li class="box bold large">Leistungsdiagnostik (IQ-Testung)</li>
+  </ul>
+</main>

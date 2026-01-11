@@ -1,0 +1,11 @@
+<% layout("./page.eta", { siteTitle: it.siteTitle, navigation: it.navigation }) %>
+<main class="content-width text-align:center stack">
+  <h1>Praxis</h1>
+  <section class="praxis-gallery cluster content-width justify-content:center">
+    <% for (const image of it.galleryImages) { %>
+    <a href="<%= image.src %>">
+      <img src="<%= image.src %>" alt="<%= image.alt %>" width="300" height="300" loading="lazy" />
+    </a>
+    <% } %>
+  </section>
+</main>
