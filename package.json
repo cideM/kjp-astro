@@ -6,12 +6,15 @@
     "node": ">=24"
   },
   "scripts": {
-    "build": "node main.ts",
+    "build": "tsc && node main.ts",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^17.0.0",
+    "@contentful/rich-text-types": "^17.0.0",
+    "contentful": "^11.5.20",
     "eta": "^3.5.0",
     "fs-extra": "^11.3.0",
     "swiper": "^11.2.6"
@@ -23,6 +26,7 @@
     "@types/node": "^22.15.21",
     "eslint": "^9.39.2",
     "prettier": "^3.7.4",
+    "typescript": "^5.8.3",
     "typescript-eslint": "^8.52.0"
   }
 }
