@@ -5,14 +5,14 @@
       <h1>Vereinbarung von Erstgesprächen</h1>
       <p>
         Um ein persönliches Erstgespräch zu vereinbaren, können Sie sich oder
-        kannst du dich gerne an unsere Praxismanagerin <b>Carena Schüllner</b>
+        kannst du dich gerne an unsere Praxismanagerin <b><%= it.praxisManagerin.name %></b>
         wenden.
       </p>
       <div class="roundPicture align-self:center">
-        <img src="/images/schuellner_cropped.jpg" width="300" height="300" alt="Praxismanagerin" />
+        <img src="<%= it.praxisManagerin.photoUrl %>" width="300" height="300" alt="Praxismanagerin" />
       </div>
       <address id="contact" class="stack-xxs">
-        <a href="tel:015174369929">01517 / 4369929</a>
+        <a href="tel:<%= it.praxisManagerin.phone.replace(/\s|\//g, '') %>"><%= it.praxisManagerin.phone %></a>
         <a href="mailto:info@kjp-meerbusch.de">info@kjp-meerbusch.de</a>
       </address>
       <p>
@@ -35,7 +35,7 @@
   </div>
   <div class="stack">
     <h1>Persönliche Kontaktdaten unserer Therapeuten</h1>
-    <% for (const therapeut of it.therapeuten.filter(t => !t.hideFromContact)) { %>
+    <% for (const therapeut of it.therapeuten.filter(t => !t.aufKontaktSeiteAusblenden)) { %>
     <section class="stack-xxs">
       <h3><%= therapeut.displayName %></h3>
       <address class="stack-xxs">

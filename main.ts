@@ -16,16 +16,9 @@ interface Therapeut {
     telefon: EntryFieldTypes.Symbol;
     foto: EntryFieldTypes.AssetLink;
     bio: EntryFieldTypes.RichText;
+    aufKontaktSeiteAusblenden: boolean;
   };
   contentTypeId: "therapeut";
-}
-
-interface Collapsible {
-  fields: {
-    titel: EntryFieldTypes.Symbol;
-    inhalt: EntryFieldTypes.RichText;
-  };
-  contentTypeId: "collapsible";
 }
 
 interface Seite {
@@ -36,6 +29,15 @@ interface Seite {
     inhalt: EntryFieldTypes.RichText;
   };
   contentTypeId: "seite";
+}
+
+interface PraxisManagerin {
+  fields: {
+    name: EntryFieldTypes.Symbol;
+    phone: EntryFieldTypes.Symbol;
+    photo: EntryFieldTypes.AssetLink;
+  };
+  contentTypeId: "praxisManagerin";
 }
 
 const eta = new Eta({ views: path.join(import.meta.dirname!, "templates") });
@@ -102,34 +104,83 @@ async function build() {
     throw new Error('Page "Therapie" not found in Contentful');
   }
 
+  // Find Diagnostik page
+  const diagnostikPage = getSeitenResponse.items.find(
+    (item) => item.fields.titel === "Diagnostik"
+  );
+  if (!diagnostikPage) {
+    throw new Error('Page "Diagnostik" not found in Contentful');
+  }
+
   console.log("Fetching therapeuten from Contentful...");
   const getTherapeutenResponse = await client.getEntries<Therapeut, "de">({
     content_type: "therapeut",
   });
 
-  const therapeuten = getTherapeutenResponse.items.map((item) => {
-    const foto = item.fields.foto;
-    const fotoUrl =
-      foto && "fields" in foto && foto.fields.file?.url
-        ? `https:${foto.fields.file.url}`
+  const therapeuten = getTherapeutenResponse.items
+    .map((item) => {
+      const foto = item.fields.foto;
+      const hasPhoto = !!(foto && "fields" in foto && foto.fields.file?.url);
+      const fotoUrl = hasPhoto
+        ? `https:${(foto as { fields: { file: { url: string } } }).fields.file.url}`
         : "/images/therapeuten/foto_therapeut_leer.jpg";
-    const fotoAlt =
-      foto && "fields" in foto && foto.fields.description
-        ? foto.fields.description
-        : `Foto von ${item.fields.name}`;
+      const fotoAlt =
+        foto && "fields" in foto && foto.fields.description
+          ? foto.fields.description
+          : `Foto von ${item.fields.name}`;
 
-    return {
-      slug: item.fields.slug || "",
-      displayName: item.fields.name,
-      subtitle: item.fields.untertitel || "",
-      photo: fotoUrl,
-      photoAlt: fotoAlt,
-      email: item.fields.email || "",
-      phone: item.fields.telefon || "",
-      hasBio: !!item.fields.bio,
-      bioHtml: item.fields.bio ? documentToHtmlString(item.fields.bio) : "",
-    };
+      return {
+        slug: item.fields.slug || "",
+        displayName: item.fields.name,
+        subtitle: item.fields.untertitel || "",
+        photo: fotoUrl,
+        photoAlt: fotoAlt,
+        hasPhoto,
+        email: item.fields.email || "",
+        phone: item.fields.telefon || "",
+        aufKontaktSeiteAusblenden: item.fields.aufKontaktSeiteAusblenden,
+        hasBio: !!item.fields.bio,
+        bioHtml: item.fields.bio ? documentToHtmlString(item.fields.bio) : "",
+      };
+    })
+    .sort((a, b) => {
+      // dr-sonja-koennecke always first
+      if (a.slug === "dr-sonja-koennecke") return -1;
+      if (b.slug === "dr-sonja-koennecke") return 1;
+
+      // VT comes before i. A.
+      const aIsVT = a.subtitle.includes("(VT)");
+      const bIsVT = b.subtitle.includes("(VT)");
+      if (aIsVT !== bIsVT) return aIsVT ? -1 : 1;
+
+      // Within each group, those with photos come first
+      if (a.hasPhoto !== b.hasPhoto) return a.hasPhoto ? -1 : 1;
+
+      return 0;
+    });
+
+  console.log("Fetching praxisManagerin from Contentful...");
+  const getPraxisManagerinResponse = await client.getEntries<
+    PraxisManagerin,
+    "de"
+  >({
+    content_type: "praxisManagerin",
   });
+
+  const praxisManagerinEntry = getPraxisManagerinResponse.items[0];
+  if (!praxisManagerinEntry) {
+    throw new Error("PraxisManagerin not found in Contentful");
+  }
+
+  const pmPhoto = praxisManagerinEntry.fields.photo;
+  const praxisManagerin = {
+    name: praxisManagerinEntry.fields.name,
+    phone: praxisManagerinEntry.fields.phone,
+    photoUrl:
+      pmPhoto && "fields" in pmPhoto && pmPhoto.fields.file?.url
+        ? `https:${pmPhoto.fields.file.url}`
+        : "",
+  };
 
   if (!existsSync("./public")) {
     mkdirSync("./public");
@@ -164,6 +215,7 @@ async function build() {
     eta.render("./kontakt.eta", {
       navigation,
       therapeuten,
+      praxisManagerin,
       googleMapsApiKey,
       siteTitle: "KJP Meerbusch | Kontakt",
     })
@@ -194,8 +246,23 @@ async function build() {
     })
   );
 
+  // Build Diagnostik page from Contentful
+  console.log("Building diagnostik.html...");
+  const diagnostikHtml = diagnostikPage.fields.inhalt
+    ? renderRichText(diagnostikPage.fields.inhalt)
+    : "";
+  writeFileSync(
+    "./public/diagnostik.html",
+    eta.render("./pages/seite.eta", {
+      navigation,
+      siteTitle: `KJP Meerbusch | ${diagnostikPage.fields.titel}`,
+      titel: diagnostikPage.fields.titel,
+      inhalt: diagnostikHtml,
+    })
+  );
+
   // Build static content pages
-  const contentPages = ["diagnostik", "kosten", "karriere", "impressum"];
+  const contentPages = ["kosten", "karriere", "impressum"];
 
   for (const page of contentPages) {
     console.log(`Building ${page}.html...`);
