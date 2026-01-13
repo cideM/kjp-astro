@@ -19,3 +19,6 @@ Cache-Control = "public, max-age=31536000, immutable"
 
 [[plugins]]
 package = "@netlify/plugin-sitemap"
+
+[[plugins]]
+package = "@netlify/plugin-lighthouse"
