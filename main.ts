@@ -40,11 +40,13 @@ interface PraxisManagerin {
   contentTypeId: "praxisManagerin";
 }
 
-interface SonjaStartseite {
+interface Startseite {
   fields: {
-    photo: EntryFieldTypes.AssetLink;
+    sonjaFoto: EntryFieldTypes.AssetLink;
+    carousel: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
+    willkommensText: EntryFieldTypes.RichText;
   };
-  contentTypeId: "sonjaStartseite";
+  contentTypeId: "startseite";
 }
 
 interface TherapeutenSeite {
@@ -76,17 +78,6 @@ const baseNavigation = [
   { slug: "kosten", text: "Kosten", href: "/kosten.html" },
   { slug: "kontakt", text: "Kontakt & Anfahrt", href: "/kontakt.html" },
   { slug: "karriere", text: "Karriere", href: "/karriere.html" },
-];
-
-const galleryImages = [
-  { src: "/images/gallery/gallery1.jpg", alt: "Bild aus der Praxis" },
-  { src: "/images/gallery/gallery2.jpg", alt: "Bild aus der Praxis" },
-  { src: "/images/gallery/gallery3.jpg", alt: "Bild aus der Praxis" },
-  { src: "/images/gallery/gallery4.jpg", alt: "Bild aus der Praxis" },
-  { src: "/images/gallery/gallery5.jpg", alt: "Bild aus der Praxis" },
-  { src: "/images/gallery/gallery6.jpg", alt: "Bild aus der Praxis" },
-  { src: "/images/gallery/gallery7.jpg", alt: "Bild aus der Praxis" },
-  { src: "/images/gallery/gallery8.jpg", alt: "Bild aus der Praxis" },
 ];
 
 // Helper to render rich text with embedded Collapsible support
@@ -210,20 +201,41 @@ async function build() {
         : "",
   };
 
-  console.log("Fetching sonjaStartseite from Contentful...");
-  const getSonjaStartseiteResponse = await client.getEntries<
-    SonjaStartseite,
-    "de"
-  >({
-    content_type: "sonjaStartseite",
+  console.log("Fetching startseite from Contentful...");
+  const getStartseiteResponse = await client.getEntries<Startseite, "de">({
+    content_type: "startseite",
   });
 
-  const sonjaStartseiteEntry = getSonjaStartseiteResponse.items[0];
-  const ssPhoto = sonjaStartseiteEntry?.fields.photo;
-  const sonjaStartseitePhotoUrl =
-    ssPhoto && "fields" in ssPhoto && ssPhoto.fields.file?.url
-      ? `https:${ssPhoto.fields.file.url}`
+  if (getStartseiteResponse.items.length !== 1) {
+    throw new Error(
+      `Expected exactly 1 Startseite, found ${getStartseiteResponse.items.length}`
+    );
+  }
+
+  const startseite = getStartseiteResponse.items[0];
+
+  // Extract Sonja photo URL
+  const sonjaFoto = startseite.fields.sonjaFoto;
+  const sonjaFotoUrl =
+    sonjaFoto && "fields" in sonjaFoto && sonjaFoto.fields.file?.url
+      ? `https:${sonjaFoto.fields.file.url}`
       : "/images/sonja_startseite.jpeg";
+
+  // Extract carousel images
+  const carouselImages = startseite.fields.carousel
+    .filter(
+      (asset): asset is typeof asset & { fields: { file: { url: string } } } =>
+        "fields" in asset && !!asset.fields.file?.url
+    )
+    .map((asset) => ({
+      url: `https:${asset.fields.file.url}`,
+      alt: asset.fields.description || "Bild aus der Praxis",
+    }));
+
+  // Render welcome text
+  const willkommensHtml = startseite.fields.willkommensText
+    ? documentToHtmlString(startseite.fields.willkommensText)
+    : "";
 
   if (!existsSync("./public")) {
     mkdirSync("./public");
@@ -237,8 +249,9 @@ async function build() {
     "./public/index.html",
     eta.render("./index.eta", {
       navigation,
-      galleryImages,
-      sonjaStartseitePhotoUrl,
+      carouselImages,
+      sonjaFotoUrl,
+      willkommensHtml,
       siteTitle: "KJP Meerbusch",
     })
   );
@@ -270,7 +283,7 @@ async function build() {
     "./public/praxis.html",
     eta.render("./praxis.eta", {
       navigation,
-      galleryImages,
+      carouselImages,
       siteTitle: "KJP Meerbusch | Praxis",
     })
   );

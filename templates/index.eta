@@ -3,9 +3,26 @@
 
 <div class="swiper">
   <div class="swiper-wrapper">
-    <% for (const image of it.galleryImages) { %>
+    <% for (const image of it.carouselImages) { %>
     <div class="swiper-slide">
-      <img src="<%= image.src %>" alt="<%= image.alt %>" loading="lazy" />
+      <picture>
+        <source
+          type="image/webp"
+          media="(min-width: 1800px)"
+          srcset="<%= image.url %>?q=80&w=2400&h=1029&fm=webp&fit=fill"
+        />
+        <source
+          type="image/webp"
+          media="(min-width: 600px)"
+          srcset="<%= image.url %>?q=70&w=1200&h=514&fm=webp&fit=fill"
+        />
+        <source
+          type="image/webp"
+          media="(max-width: 599px)"
+          srcset="<%= image.url %>?q=70&w=600&h=257&fm=webp&fit=fill"
+        />
+        <img src="<%= image.url %>" alt="<%= image.alt %>" loading="lazy" />
+      </picture>
     </div>
     <% } %>
   </div>
@@ -15,26 +32,13 @@
 <main class="stack welcome-section">
   <article class="with-sidebar content-width">
     <div class="roundPicture">
-      <img src="<%= it.sonjaStartseitePhotoUrl %>" width="250" height="250" alt="Sonja" class="center" />
+      <picture>
+        <source type="image/webp" srcset="<%= it.sonjaFotoUrl %>?q=80&w=500&h=500&fm=webp&fit=fill" />
+        <img src="<%= it.sonjaFotoUrl %>" width="250" height="250" alt="Dr. Sonja Könnecke" class="center" />
+      </picture>
     </div>
     <div class="stack-s">
-      <p>
-        Liebe Kinder und Jugendliche,<br />
-        sehr geehrte Eltern,
-      </p>
-      <p>
-        herzlich willkommen in unserer psychotherapeutischen Praxis für Kinder
-        und Jugendliche. Wir freuen uns sehr euch/Sie bei uns in Meerbusch
-        Büderich willkommen zu heißen. Unser Team besteht aus staatlich
-        approbierten Kinder- und Jugendlichenpsychotherapeut:innen für
-        Verhaltenstherapie. Wir bieten ein umfassendes Behandlungsangebot an,
-        welches auf neuesten wissenschaftlichen Methoden beruht. Uns als
-        Therapeut:innen ist es sehr wichtig, dass ihr euch und Sie sich bei
-        uns wohlfühlen. Zugleich stellen wir höchste fachliche Ansprüche an
-        unsere Arbeit.
-      </p>
-      <p>Wir freuen uns dich/Sie kennen zu lernen.</p>
-      <p>Dr. Sonja Könnecke und Kolleg:innen</p>
+      <%~ it.willkommensHtml %>
     </div>
   </article>
 </main>
