@@ -149,7 +149,7 @@ button {
 /* Main content area */
 main {
   flex-grow: 1;
-  padding-block: var(--space-scale-l);
+  padding-block: var(--space-scale-m);
   padding-inline: var(--space-scale-s);
 }
 
