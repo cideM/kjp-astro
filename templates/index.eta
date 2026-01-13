@@ -15,7 +15,7 @@
 <main class="stack welcome-section">
   <article class="with-sidebar content-width">
     <div class="roundPicture">
-      <img src="/images/sonja_startseite.jpeg" width="250" height="250" alt="Sonja" class="center" />
+      <img src="<%= it.sonjaStartseitePhotoUrl %>" width="250" height="250" alt="Sonja" class="center" />
     </div>
     <div class="stack-s">
       <p>

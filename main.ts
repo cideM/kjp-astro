@@ -40,6 +40,13 @@ interface PraxisManagerin {
   contentTypeId: "praxisManagerin";
 }
 
+interface SonjaStartseite {
+  fields: {
+    photo: EntryFieldTypes.AssetLink;
+  };
+  contentTypeId: "sonjaStartseite";
+}
+
 const eta = new Eta({ views: path.join(import.meta.dirname!, "templates") });
 
 const client = contentful.createClient({
@@ -194,6 +201,21 @@ async function build() {
         : "",
   };
 
+  console.log("Fetching sonjaStartseite from Contentful...");
+  const getSonjaStartseiteResponse = await client.getEntries<
+    SonjaStartseite,
+    "de"
+  >({
+    content_type: "sonjaStartseite",
+  });
+
+  const sonjaStartseiteEntry = getSonjaStartseiteResponse.items[0];
+  const ssPhoto = sonjaStartseiteEntry?.fields.photo;
+  const sonjaStartseitePhotoUrl =
+    ssPhoto && "fields" in ssPhoto && ssPhoto.fields.file?.url
+      ? `https:${ssPhoto.fields.file.url}`
+      : "/images/sonja_startseite.jpeg";
+
   if (!existsSync("./public")) {
     mkdirSync("./public");
   }
@@ -207,6 +229,7 @@ async function build() {
     eta.render("./index.eta", {
       navigation,
       galleryImages,
+      sonjaStartseitePhotoUrl,
       siteTitle: "KJP Meerbusch",
     })
   );
