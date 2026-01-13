@@ -97,29 +97,21 @@ async function build() {
     content_type: "seite",
   });
 
-  // Find Therapie page
-  const therapiePage = getSeitenResponse.items.find(
-    (item) => item.fields.titel === "Therapie"
-  );
-  if (!therapiePage) {
-    throw new Error('Page "Therapie" not found in Contentful');
-  }
+  // Find pages by slug
+  const findPage = (slug: string) => {
+    const page = getSeitenResponse.items.find(
+      (item) => item.fields.slug === slug
+    );
+    if (!page) {
+      throw new Error(`Page with slug "${slug}" not found in Contentful`);
+    }
+    return page;
+  };
 
-  // Find Diagnostik page
-  const diagnostikPage = getSeitenResponse.items.find(
-    (item) => item.fields.titel === "Diagnostik"
-  );
-  if (!diagnostikPage) {
-    throw new Error('Page "Diagnostik" not found in Contentful');
-  }
-
-  // Find Kosten page
-  const kostenPage = getSeitenResponse.items.find(
-    (item) => item.fields.titel === "Kosten"
-  );
-  if (!kostenPage) {
-    throw new Error('Page "Kosten" not found in Contentful');
-  }
+  const therapiePage = findPage("therapie");
+  const diagnostikPage = findPage("diagnostik");
+  const kostenPage = findPage("kosten");
+  const karrierePage = findPage("karriere");
 
   // Build navigation with navigationsName from Contentful pages
   const navigation = baseNavigation.map((item) => {
@@ -296,8 +288,23 @@ async function build() {
     })
   );
 
+  // Build Karriere page from Contentful
+  console.log("Building karriere.html...");
+  const karriereHtml = karrierePage.fields.inhalt
+    ? renderRichText(karrierePage.fields.inhalt)
+    : "";
+  writeFileSync(
+    "./public/karriere.html",
+    eta.render("./pages/seite.eta", {
+      navigation,
+      siteTitle: `KJP Meerbusch | ${karrierePage.fields.titel}`,
+      titel: karrierePage.fields.titel,
+      inhalt: karriereHtml,
+    })
+  );
+
   // Build static content pages
-  const contentPages = ["karriere", "impressum"];
+  const contentPages = ["impressum"];
 
   for (const page of contentPages) {
     console.log(`Building ${page}.html...`);
