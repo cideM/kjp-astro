@@ -6,8 +6,9 @@
     "node": ">=24"
   },
   "scripts": {
-    "build": "tsc && node main.ts",
+    "build": "node main.ts",
     "lint": "eslint .",
+    "tsc:check": "tsc",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
