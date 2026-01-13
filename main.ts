@@ -50,14 +50,15 @@ const client = contentful.createClient({
 
 const googleMapsApiKey = process.env["PUBLIC_GOOGLE_MAPS_API_KEY"] || "";
 
-const navigation = [
-  { text: "Therapie", href: "/therapie.html" },
-  { text: "Diagnostik", href: "/diagnostik.html" },
-  { text: "Praxis", href: "/praxis.html" },
-  { text: "Therapeuten", href: "/therapeuten.html" },
-  { text: "Kosten", href: "/kosten.html" },
-  { text: "Kontakt & Anfahrt", href: "/kontakt.html" },
-  { text: "Karriere", href: "/karriere.html" },
+// Base navigation - text for Contentful pages will be updated dynamically
+const baseNavigation = [
+  { slug: "therapie", text: "Therapie", href: "/therapie.html" },
+  { slug: "diagnostik", text: "Diagnostik", href: "/diagnostik.html" },
+  { slug: "praxis", text: "Praxis", href: "/praxis.html" },
+  { slug: "therapeuten", text: "Therapeuten", href: "/therapeuten.html" },
+  { slug: "kosten", text: "Kosten", href: "/kosten.html" },
+  { slug: "kontakt", text: "Kontakt & Anfahrt", href: "/kontakt.html" },
+  { slug: "karriere", text: "Karriere", href: "/karriere.html" },
 ];
 
 const galleryImages = [
@@ -111,6 +112,25 @@ async function build() {
   if (!diagnostikPage) {
     throw new Error('Page "Diagnostik" not found in Contentful');
   }
+
+  // Find Kosten page
+  const kostenPage = getSeitenResponse.items.find(
+    (item) => item.fields.titel === "Kosten"
+  );
+  if (!kostenPage) {
+    throw new Error('Page "Kosten" not found in Contentful');
+  }
+
+  // Build navigation with navigationsName from Contentful pages
+  const navigation = baseNavigation.map((item) => {
+    const contentfulPage = getSeitenResponse.items.find(
+      (page) => page.fields.slug === item.slug
+    );
+    return {
+      text: contentfulPage?.fields.navigationsName || item.text,
+      href: item.href,
+    };
+  });
 
   console.log("Fetching therapeuten from Contentful...");
   const getTherapeutenResponse = await client.getEntries<Therapeut, "de">({
@@ -261,8 +281,23 @@ async function build() {
     })
   );
 
+  // Build Kosten page from Contentful
+  console.log("Building kosten.html...");
+  const kostenHtml = kostenPage.fields.inhalt
+    ? renderRichText(kostenPage.fields.inhalt)
+    : "";
+  writeFileSync(
+    "./public/kosten.html",
+    eta.render("./pages/seite.eta", {
+      navigation,
+      siteTitle: `KJP Meerbusch | ${kostenPage.fields.titel}`,
+      titel: kostenPage.fields.titel,
+      inhalt: kostenHtml,
+    })
+  );
+
   // Build static content pages
-  const contentPages = ["kosten", "karriere", "impressum"];
+  const contentPages = ["karriere", "impressum"];
 
   for (const page of contentPages) {
     console.log(`Building ${page}.html...`);
