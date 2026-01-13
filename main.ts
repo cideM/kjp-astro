@@ -47,6 +47,16 @@ interface SonjaStartseite {
   contentTypeId: "sonjaStartseite";
 }
 
+interface TherapeutenSeite {
+  fields: {
+    titel: EntryFieldTypes.Symbol;
+    therapeutenListe: EntryFieldTypes.Array<
+      EntryFieldTypes.EntryLink<Therapeut>
+    >;
+  };
+  contentTypeId: "therapeutenSeite";
+}
+
 const eta = new Eta({ views: path.join(import.meta.dirname!, "templates") });
 
 const client = contentful.createClient({
@@ -131,12 +141,26 @@ async function build() {
     };
   });
 
-  console.log("Fetching therapeuten from Contentful...");
-  const getTherapeutenResponse = await client.getEntries<Therapeut, "de">({
-    content_type: "therapeut",
+  console.log("Fetching therapeutenSeite from Contentful...");
+  const getTherapeutenSeiteResponse = await client.getEntries<
+    TherapeutenSeite,
+    "de"
+  >({
+    content_type: "therapeutenSeite",
+    include: 2,
   });
 
-  const therapeuten = getTherapeutenResponse.items
+  if (getTherapeutenSeiteResponse.items.length !== 1) {
+    throw new Error(
+      `Expected exactly 1 TherapeutenSeite, found ${getTherapeutenSeiteResponse.items.length}`
+    );
+  }
+
+  const therapeutenSeite = getTherapeutenSeiteResponse.items[0];
+  const therapeuten = therapeutenSeite.fields.therapeutenListe
+    .filter((item): item is typeof item & { fields: Therapeut["fields"] } =>
+      "fields" in item
+    )
     .map((item) => {
       const foto = item.fields.foto;
       const hasPhoto = !!(foto && "fields" in foto && foto.fields.file?.url);
@@ -161,21 +185,6 @@ async function build() {
         hasBio: !!item.fields.bio,
         bioHtml: item.fields.bio ? documentToHtmlString(item.fields.bio) : "",
       };
-    })
-    .sort((a, b) => {
-      // dr-sonja-koennecke always first
-      if (a.slug === "dr-sonja-koennecke") return -1;
-      if (b.slug === "dr-sonja-koennecke") return 1;
-
-      // VT comes before i. A.
-      const aIsVT = a.subtitle.includes("(VT)");
-      const bIsVT = b.subtitle.includes("(VT)");
-      if (aIsVT !== bIsVT) return aIsVT ? -1 : 1;
-
-      // Within each group, those with photos come first
-      if (a.hasPhoto !== b.hasPhoto) return a.hasPhoto ? -1 : 1;
-
-      return 0;
     });
 
   console.log("Fetching praxisManagerin from Contentful...");
