@@ -71,9 +71,9 @@ const googleMapsApiKey = process.env["PUBLIC_GOOGLE_MAPS_API_KEY"] || "";
 
 // Base navigation - text for Contentful pages will be updated dynamically
 const baseNavigation = [
+  { slug: "praxis", text: "Praxis", href: "/praxis.html" },
   { slug: "therapie", text: "Therapie", href: "/therapie.html" },
   { slug: "diagnostik", text: "Diagnostik", href: "/diagnostik.html" },
-  { slug: "praxis", text: "Praxis", href: "/praxis.html" },
   { slug: "therapeuten", text: "Therapeuten", href: "/therapeuten.html" },
   { slug: "kosten", text: "Kosten", href: "/kosten.html" },
   { slug: "kontakt", text: "Kontakt & Anfahrt", href: "/kontakt.html" },
