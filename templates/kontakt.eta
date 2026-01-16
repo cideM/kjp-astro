@@ -9,7 +9,21 @@
         wenden.
       </p>
       <div class="roundPicture align-self:center">
-        <img src="<%= it.praxisManagerin.photoUrl %>" width="300" height="300" alt="Praxismanagerin" />
+        <picture>
+          <% if (it.praxisManagerin.photoUrl) { %>
+          <source
+            type="image/webp"
+            media="(min-width: 600px)"
+            srcset="<%= it.praxisManagerin.photoUrl %>?q=80&w=300&h=300&fm=webp&fit=fill"
+          />
+          <source
+            type="image/webp"
+            media="(max-width: 599px)"
+            srcset="<%= it.praxisManagerin.photoUrl %>?q=70&w=200&h=200&fm=webp&fit=fill"
+          />
+          <% } %>
+          <img src="<%= it.praxisManagerin.photoUrl %>" width="300" height="300" alt="Praxismanagerin" loading="lazy" />
+        </picture>
       </div>
       <address id="contact" class="stack-xxs">
         <a href="tel:<%= it.praxisManagerin.phone.replace(/\s|\//g, '') %>"><%= it.praxisManagerin.phone %></a>

@@ -4,7 +4,26 @@
   <div class="cluster-m justify-content:center">
     <% for (const therapeut of it.therapeuten) { %>
     <article class="therapeut-card">
-      <img src="<%= therapeut.photo %>" alt="<%= therapeut.photoAlt %>" width="350" height="400" />
+      <picture>
+        <% if (therapeut.hasPhoto) { %>
+        <source
+          type="image/webp"
+          media="(min-width: 1200px)"
+          srcset="<%= therapeut.photo %>?q=80&w=350&h=400&fm=webp&fit=fill"
+        />
+        <source
+          type="image/webp"
+          media="(min-width: 600px)"
+          srcset="<%= therapeut.photo %>?q=70&w=300&h=343&fm=webp&fit=fill"
+        />
+        <source
+          type="image/webp"
+          media="(max-width: 599px)"
+          srcset="<%= therapeut.photo %>?q=70&w=250&h=286&fm=webp&fit=fill"
+        />
+        <% } %>
+        <img src="<%= therapeut.photo %>" alt="<%= therapeut.photoAlt %>" width="350" height="400" loading="lazy" />
+      </picture>
       <h2>
         <% if (therapeut.hasBio) { %>
         <a href="/therapeuten/<%= therapeut.slug %>.html">
