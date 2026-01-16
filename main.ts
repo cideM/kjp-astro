@@ -59,6 +59,14 @@ interface TherapeutenSeite {
   contentTypeId: "therapeutenSeite";
 }
 
+interface PraxisSeite {
+  fields: {
+    titel: EntryFieldTypes.Symbol;
+    fotos: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
+  };
+  contentTypeId: "praxisSeite";
+}
+
 const eta = new Eta({ views: path.join(import.meta.dirname!, "templates") });
 
 const client = contentful.createClient({
@@ -237,6 +245,28 @@ async function build() {
     ? documentToHtmlString(startseite.fields.willkommensText)
     : "";
 
+  console.log("Fetching praxisSeite from Contentful...");
+  const getPraxisSeiteResponse = await client.getEntries<PraxisSeite, "de">({
+    content_type: "praxisSeite",
+  });
+
+  if (getPraxisSeiteResponse.items.length !== 1) {
+    throw new Error(
+      `Expected exactly 1 PraxisSeite, found ${getPraxisSeiteResponse.items.length}`
+    );
+  }
+
+  const praxisSeite = getPraxisSeiteResponse.items[0];
+  const praxisImages = praxisSeite.fields.fotos
+    .filter(
+      (asset): asset is typeof asset & { fields: { file: { url: string } } } =>
+        "fields" in asset && !!asset.fields.file?.url
+    )
+    .map((asset) => ({
+      url: `https:${asset.fields.file.url}`,
+      alt: asset.fields.description || "Bild aus der Praxis",
+    }));
+
   if (!existsSync("./public")) {
     mkdirSync("./public");
   }
@@ -283,7 +313,7 @@ async function build() {
     "./public/praxis.html",
     eta.render("./praxis.eta", {
       navigation,
-      carouselImages,
+      carouselImages: praxisImages,
       siteTitle: "KJP Meerbusch | Praxis",
     })
   );
