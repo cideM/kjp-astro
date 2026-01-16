@@ -182,7 +182,7 @@ async function build() {
         phone: item.fields.telefon || "",
         aufKontaktSeiteAusblenden: item.fields.aufKontaktSeiteAusblenden,
         hasBio: !!item.fields.bio,
-        bioHtml: item.fields.bio ? documentToHtmlString(item.fields.bio) : "",
+        bioHtml: item.fields.bio ? documentToHtmlString(item.fields.bio as Parameters<typeof documentToHtmlString>[0]) : "",
       };
     });
 
@@ -232,7 +232,7 @@ async function build() {
   // Extract carousel images
   const carouselImages = startseite.fields.carousel
     .filter(
-      (asset): asset is typeof asset & { fields: { file: { url: string } } } =>
+      (asset): asset is typeof asset & { fields: { file: { url: string }; description?: string } } =>
         "fields" in asset && !!asset.fields.file?.url
     )
     .map((asset) => ({
@@ -259,7 +259,7 @@ async function build() {
   const praxisSeite = getPraxisSeiteResponse.items[0];
   const praxisImages = praxisSeite.fields.fotos
     .filter(
-      (asset): asset is typeof asset & { fields: { file: { url: string } } } =>
+      (asset): asset is typeof asset & { fields: { file: { url: string }; description?: string } } =>
         "fields" in asset && !!asset.fields.file?.url
     )
     .map((asset) => ({
