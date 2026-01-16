@@ -9,7 +9,7 @@
         <source
           type="image/webp"
           media="(min-width: 1800px)"
-          srcset="<%= image.url %>?q=90&w=2400&h=1029&fm=webp&fit=fill"
+          srcset="<%= image.url %>?q=80&w=2600&h=800&fm=webp&fit=fill"
         />
         <source
           type="image/webp"
