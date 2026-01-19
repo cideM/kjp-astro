@@ -13,16 +13,27 @@
           <% if (it.praxisManagerin.photoUrl) { %>
           <source
             type="image/webp"
-            media="(min-width: 600px)"
-            srcset="<%= it.praxisManagerin.photoUrl %>?q=80&w=300&h=300&fm=webp&fit=fill"
-          />
-          <source
-            type="image/webp"
-            media="(max-width: 599px)"
-            srcset="<%= it.praxisManagerin.photoUrl %>?q=70&w=200&h=200&fm=webp&fit=fill"
+            sizes="(min-width: 600px) 300px, 200px"
+            srcset="
+              <%= it.praxisManagerin.photoUrl %>?q=75&w=200&h=200&fm=webp&fit=fill 200w,
+              <%= it.praxisManagerin.photoUrl %>?q=80&w=300&h=300&fm=webp&fit=fill 300w,
+              <%= it.praxisManagerin.photoUrl %>?q=80&w=450&h=450&fm=webp&fit=fill 450w,
+              <%= it.praxisManagerin.photoUrl %>?q=80&w=600&h=600&fm=webp&fit=fill 600w"
           />
           <% } %>
-          <img src="<%= it.praxisManagerin.photoUrl %>" width="300" height="300" alt="Praxismanagerin" loading="lazy" />
+          <img
+            src="<%= it.praxisManagerin.photoUrl %>?w=300&h=300&fit=fill"
+            width="300"
+            height="300"
+            alt="Praxismanagerin"
+            loading="lazy"
+            sizes="(min-width: 600px) 300px, 200px"
+            srcset="
+              <%= it.praxisManagerin.photoUrl %>?q=75&w=200&h=200&fit=fill 200w,
+              <%= it.praxisManagerin.photoUrl %>?q=80&w=300&h=300&fit=fill 300w,
+              <%= it.praxisManagerin.photoUrl %>?q=80&w=450&h=450&fit=fill 450w,
+              <%= it.praxisManagerin.photoUrl %>?q=80&w=600&h=600&fit=fill 600w"
+          />
         </picture>
       </div>
       <address id="contact" class="stack-xxs">

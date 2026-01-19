@@ -7,20 +7,26 @@
       <picture>
         <source
           type="image/webp"
-          media="(min-width: 1200px)"
-          srcset="<%= image.url %>?q=80&w=800&h=800&fm=webp&fit=fill"
+          sizes="(min-width: 600px) 300px, calc(50vw - 24px)"
+          srcset="
+            <%= image.url %>?q=75&w=200&h=200&fm=webp&fit=fill 200w,
+            <%= image.url %>?q=75&w=300&h=300&fm=webp&fit=fill 300w,
+            <%= image.url %>?q=80&w=450&h=450&fm=webp&fit=fill 450w,
+            <%= image.url %>?q=80&w=600&h=600&fm=webp&fit=fill 600w"
         />
-        <source
-          type="image/webp"
-          media="(min-width: 600px)"
-          srcset="<%= image.url %>?q=70&w=600&h=600&fm=webp&fit=fill"
+        <img
+          src="<%= image.url %>?w=300&h=300&fit=fill"
+          alt="<%= image.alt %>"
+          width="300"
+          height="300"
+          loading="lazy"
+          sizes="(min-width: 600px) 300px, calc(50vw - 24px)"
+          srcset="
+            <%= image.url %>?q=75&w=200&h=200&fit=fill 200w,
+            <%= image.url %>?q=75&w=300&h=300&fit=fill 300w,
+            <%= image.url %>?q=80&w=450&h=450&fit=fill 450w,
+            <%= image.url %>?q=80&w=600&h=600&fit=fill 600w"
         />
-        <source
-          type="image/webp"
-          media="(max-width: 599px)"
-          srcset="<%= image.url %>?q=70&w=400&h=400&fm=webp&fit=fill"
-        />
-        <img src="<%= image.url %>" alt="<%= image.alt %>" width="300" height="300" loading="lazy" />
       </picture>
     </a>
     <% } %>
