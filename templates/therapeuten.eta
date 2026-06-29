@@ -1,4 +1,4 @@
-<% layout("./page.eta", { siteTitle: it.siteTitle, navigation: it.navigation }) %>
+<% layout("./page.eta", { siteTitle: it.siteTitle, navigation: it.navigation, footer: it.footer }) %>
 <main class="content-width text-align:center stack">
   <h1>Therapeuten</h1>
   <div class="cluster-m justify-content:center">

@@ -1,4 +1,4 @@
-<% layout("../page.eta", { siteTitle: it.siteTitle, navigation: it.navigation }) %>
+<% layout("../page.eta", { siteTitle: it.siteTitle, navigation: it.navigation, footer: it.footer }) %>
 <main class="content-width article stack-xs">
   <h1><%= it.displayName %></h1>
   <%~ it.bioHtml %>

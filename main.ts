@@ -45,6 +45,10 @@ interface Startseite {
     sonjaFoto: EntryFieldTypes.AssetLink;
     carousel: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
     willkommensText: EntryFieldTypes.RichText;
+    footerTitel: EntryFieldTypes.Symbol;
+    footerEmail: EntryFieldTypes.Symbol;
+    footerPhone: EntryFieldTypes.Symbol;
+    footerPhoneNumber: EntryFieldTypes.Symbol;
   };
   contentTypeId: "startseite";
 }
@@ -245,6 +249,14 @@ async function build() {
     ? documentToHtmlString(startseite.fields.willkommensText)
     : "";
 
+  // Footer content (shown on every page via the page.eta layout)
+  const footer = {
+    titel: startseite.fields.footerTitel,
+    email: startseite.fields.footerEmail,
+    phone: startseite.fields.footerPhone,
+    phoneNumber: startseite.fields.footerPhoneNumber,
+  };
+
   console.log("Fetching praxisSeite from Contentful...");
   const getPraxisSeiteResponse = await client.getEntries<PraxisSeite, "de">({
     content_type: "praxisSeite",
@@ -279,6 +291,7 @@ async function build() {
     "./public/index.html",
     eta.render("./index.eta", {
       navigation,
+      footer,
       carouselImages,
       sonjaFotoUrl,
       willkommensHtml,
@@ -291,6 +304,7 @@ async function build() {
     "./public/therapeuten.html",
     eta.render("./therapeuten.eta", {
       navigation,
+      footer,
       therapeuten,
       siteTitle: "KJP Meerbusch | Therapeuten",
     })
@@ -301,6 +315,7 @@ async function build() {
     "./public/kontakt.html",
     eta.render("./kontakt.eta", {
       navigation,
+      footer,
       therapeuten,
       praxisManagerin,
       googleMapsApiKey,
@@ -313,6 +328,7 @@ async function build() {
     "./public/praxis.html",
     eta.render("./praxis.eta", {
       navigation,
+      footer,
       carouselImages: praxisImages,
       siteTitle: "KJP Meerbusch | Praxis",
     })
@@ -327,6 +343,7 @@ async function build() {
     "./public/therapie.html",
     eta.render("./pages/seite.eta", {
       navigation,
+      footer,
       siteTitle: `KJP Meerbusch | ${therapiePage.fields.titel}`,
       titel: therapiePage.fields.titel,
       inhalt: therapieHtml,
@@ -342,6 +359,7 @@ async function build() {
     "./public/diagnostik.html",
     eta.render("./pages/seite.eta", {
       navigation,
+      footer,
       siteTitle: `KJP Meerbusch | ${diagnostikPage.fields.titel}`,
       titel: diagnostikPage.fields.titel,
       inhalt: diagnostikHtml,
@@ -357,6 +375,7 @@ async function build() {
     "./public/kosten.html",
     eta.render("./pages/seite.eta", {
       navigation,
+      footer,
       siteTitle: `KJP Meerbusch | ${kostenPage.fields.titel}`,
       titel: kostenPage.fields.titel,
       inhalt: kostenHtml,
@@ -372,6 +391,7 @@ async function build() {
     "./public/karriere.html",
     eta.render("./pages/seite.eta", {
       navigation,
+      footer,
       siteTitle: `KJP Meerbusch | ${karrierePage.fields.titel}`,
       titel: karrierePage.fields.titel,
       inhalt: karriereHtml,
@@ -385,7 +405,7 @@ async function build() {
     console.log(`Building ${page}.html...`);
     writeFileSync(
       `./public/${page}.html`,
-      eta.render(`./pages/${page}.eta`, { navigation })
+      eta.render(`./pages/${page}.eta`, { navigation, footer })
     );
   }
 
@@ -395,6 +415,7 @@ async function build() {
       `./public/therapeuten/${t.slug}.html`,
       eta.render("./therapeuten/bio.eta", {
         navigation,
+        footer,
         siteTitle: `${t.displayName} | KJP Meerbusch`,
         displayName: t.displayName,
         bioHtml: t.bioHtml,
